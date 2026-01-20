@@ -2,95 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Premium Multi-Discipline Portfolio Design System
+   All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base - Warm Off-White */
+    --background: 40 20% 98%;
+    --foreground: 220 20% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Cards - Slightly warmer */
+    --card: 40 15% 96%;
+    --card-foreground: 220 20% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 40 15% 96%;
+    --popover-foreground: 220 20% 10%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep Charcoal */
+    --primary: 220 15% 15%;
+    --primary-foreground: 40 20% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm Gray */
+    --secondary: 40 10% 92%;
+    --secondary-foreground: 220 15% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted */
+    --muted: 40 10% 94%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Warm Neutral */
+    --accent: 35 15% 90%;
+    --accent-foreground: 220 15% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & Inputs */
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
+    --ring: 220 15% 15%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Discipline Accent Colors */
+    --dev-accent: 210 100% 55%;
+    --dev-accent-foreground: 210 100% 98%;
+    --dev-muted: 210 30% 92%;
+    
+    --design-accent: 15 85% 55%;
+    --design-accent-foreground: 15 100% 98%;
+    --design-muted: 15 30% 92%;
+    
+    --art-accent: 42 90% 50%;
+    --art-accent-foreground: 42 100% 10%;
+    --art-muted: 42 30% 92%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar */
+    --sidebar-background: 40 15% 96%;
+    --sidebar-foreground: 220 10% 30%;
+    --sidebar-primary: 220 15% 15%;
+    --sidebar-primary-foreground: 40 20% 98%;
+    --sidebar-accent: 40 10% 92%;
+    --sidebar-accent-foreground: 220 15% 15%;
+    --sidebar-border: 40 10% 88%;
+    --sidebar-ring: 210 100% 55%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Base - Rich Dark */
+    --background: 220 20% 6%;
+    --foreground: 40 15% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* Cards - Slightly lighter */
+    --card: 220 18% 10%;
+    --card-foreground: 40 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 18% 10%;
+    --popover-foreground: 40 15% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Primary - Off-White */
+    --primary: 40 15% 95%;
+    --primary-foreground: 220 20% 6%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary */
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 40 15% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Muted */
+    --muted: 220 15% 15%;
+    --muted-foreground: 40 10% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Accent */
+    --accent: 220 15% 18%;
+    --accent-foreground: 40 15% 95%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive */
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 40 15% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Borders & Inputs */
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 40 15% 80%;
+
+    /* Discipline Accent Colors - Adjusted for dark mode */
+    --dev-accent: 210 100% 60%;
+    --dev-accent-foreground: 210 100% 10%;
+    --dev-muted: 210 30% 15%;
+    
+    --design-accent: 15 90% 60%;
+    --design-accent-foreground: 15 100% 10%;
+    --design-muted: 15 30% 15%;
+    
+    --art-accent: 42 95% 55%;
+    --art-accent-foreground: 42 100% 10%;
+    --art-muted: 42 30% 15%;
+
+    /* Sidebar */
+    --sidebar-background: 220 18% 8%;
+    --sidebar-foreground: 40 10% 80%;
+    --sidebar-primary: 210 100% 60%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 40 10% 80%;
+    --sidebar-border: 220 15% 15%;
+    --sidebar-ring: 210 100% 60%;
   }
 }
 
@@ -100,6 +138,108 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
+
+  /* Typography - Premium Feel */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  /* Discipline-specific accent utilities */
+  .text-dev-accent {
+    color: hsl(var(--dev-accent));
+  }
+  .bg-dev-accent {
+    background-color: hsl(var(--dev-accent));
+  }
+  .bg-dev-muted {
+    background-color: hsl(var(--dev-muted));
+  }
+  .border-dev-accent {
+    border-color: hsl(var(--dev-accent));
+  }
+
+  .text-design-accent {
+    color: hsl(var(--design-accent));
+  }
+  .bg-design-accent {
+    background-color: hsl(var(--design-accent));
+  }
+  .bg-design-muted {
+    background-color: hsl(var(--design-muted));
+  }
+  .border-design-accent {
+    border-color: hsl(var(--design-accent));
+  }
+
+  .text-art-accent {
+    color: hsl(var(--art-accent));
+  }
+  .bg-art-accent {
+    background-color: hsl(var(--art-accent));
+  }
+  .bg-art-muted {
+    background-color: hsl(var(--art-muted));
+  }
+  .border-art-accent {
+    border-color: hsl(var(--art-accent));
+  }
+
+  /* Premium hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  /* Underline animation */
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px bg-current origin-bottom-right scale-x-0 transition-transform duration-300;
+  }
+  .link-underline:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
+
+  /* Gallery image container */
+  .gallery-frame {
+    @apply relative overflow-hidden bg-card;
+  }
+  .gallery-frame img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  .gallery-frame:hover img {
+    @apply scale-105;
+  }
+}
+
+/* Custom font-face declarations */
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+  
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
 }
