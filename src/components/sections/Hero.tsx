@@ -32,7 +32,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-serif text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight mb-6"
           >
-            Alex Morgan
+            Sohrab Malikzada
           </motion.h1>
 
           {/* Role Titles */}
@@ -42,11 +42,11 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-8"
           >
-            <span className="text-dev font-medium">Full-Stack Developer</span>
+            <span className="text-dev font-medium">Front-end Developer</span>
             <span className="text-muted-foreground">•</span>
             <span className="text-design font-medium">Graphic Designer</span>
             <span className="text-muted-foreground">•</span>
-            <span className="text-art font-medium">Visual Artist</span>
+            <span className="text-art font-medium">Professional Painter</span>
           </motion.div>
 
           {/* Description */}
