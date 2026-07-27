@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DownloadPortfolioButton } from "@/components/DownloadPortfolioButton";
 
 const navLinks = [
   { label: "Work", href: "#work" },
@@ -64,11 +65,11 @@ export const Navigation = () => {
                   {link.label}
                 </a>
               ))}
+              <DownloadPortfolioButton className="ml-2" />
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsDark(!isDark)}
-                className="ml-2"
               >
                 {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
@@ -130,6 +131,9 @@ export const Navigation = () => {
                   </motion.a>
                 ))}
               </nav>
+              <div className="mt-10">
+                <DownloadPortfolioButton size="lg" className="w-full" />
+              </div>
             </div>
           </motion.div>
         )}
