@@ -1,65 +1,8 @@
 import { motion } from "framer-motion";
 import { Palette, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { designProjects } from "@/data/portfolio";
 
-const designProjects = [
-  {
-    id: 1,
-    title: "Lumina Brand Identity",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=800&fit=crop",
-    tools: ["Figma", "Illustrator"],
-    span: "col-span-1 row-span-2",
-  },
-  {
-    id: 2,
-    title: "Fintech App UI",
-    category: "UI/UX",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
-    tools: ["Figma", "Protopie"],
-    span: "col-span-1",
-  },
-  {
-    id: 3,
-    title: "Music Festival Poster",
-    category: "Print",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=400&fit=crop",
-    tools: ["Photoshop", "Illustrator"],
-    span: "col-span-1",
-  },
-  {
-    id: 4,
-    title: "E-Commerce Redesign",
-    category: "UI/UX",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-    tools: ["Figma", "After Effects"],
-    span: "col-span-2",
-  },
-  {
-    id: 5,
-    title: "Organic Food Packaging",
-    category: "Packaging",
-    image: "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600&h=800&fit=crop",
-    tools: ["Illustrator", "Dimension"],
-    span: "col-span-1 row-span-2",
-  },
-  {
-    id: 6,
-    title: "Tech Startup Logo",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=600&h=400&fit=crop",
-    tools: ["Illustrator"],
-    span: "col-span-1",
-  },
-  {
-    id: 7,
-    title: "Magazine Layout",
-    category: "Editorial",
-    image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop",
-    tools: ["InDesign", "Photoshop"],
-    span: "col-span-1",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },

@@ -1,56 +1,7 @@
 import { motion } from "framer-motion";
 import { Brush } from "lucide-react";
+import { artworks } from "@/data/portfolio";
 
-const artworks = [
-  {
-    id: 1,
-    title: "Golden Hour",
-    medium: "Oil on Canvas",
-    year: 2024,
-    dimensions: "36\" × 48\"",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=1000&fit=crop",
-  },
-  {
-    id: 2,
-    title: "Urban Solitude",
-    medium: "Acrylic on Canvas",
-    year: 2024,
-    dimensions: "24\" × 36\"",
-    image: "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&h=1000&fit=crop",
-  },
-  {
-    id: 3,
-    title: "Abstract Emotions",
-    medium: "Mixed Media",
-    year: 2023,
-    dimensions: "30\" × 40\"",
-    image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=1000&fit=crop",
-  },
-  {
-    id: 4,
-    title: "Morning Mist",
-    medium: "Watercolor on Paper",
-    year: 2023,
-    dimensions: "18\" × 24\"",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=1000&fit=crop",
-  },
-  {
-    id: 5,
-    title: "Depths of Blue",
-    medium: "Oil on Canvas",
-    year: 2023,
-    dimensions: "40\" × 30\"",
-    image: "https://images.unsplash.com/photo-1545989253-02cc26577f88?w=800&h=1000&fit=crop",
-  },
-  {
-    id: 6,
-    title: "Eternal Flow",
-    medium: "Acrylic on Canvas",
-    year: 2022,
-    dimensions: "48\" × 36\"",
-    image: "https://images.unsplash.com/photo-1482160549825-59d1b23cb208?w=800&h=1000&fit=crop",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
