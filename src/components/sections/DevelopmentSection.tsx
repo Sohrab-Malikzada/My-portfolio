@@ -2,51 +2,8 @@ import { motion } from "framer-motion";
 import { Github, ExternalLink, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { projects } from "@/data/portfolio";
 
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-featured online marketplace with real-time inventory management, secure payments, and admin dashboard.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
-    techStack: {
-      frontend: ["React", "TypeScript", "Tailwind CSS"],
-      backend: ["Node.js", "Express", "PostgreSQL"],
-      tools: ["Docker", "AWS", "Stripe"],
-    },
-    features: ["Real-time inventory", "Secure checkout", "Admin analytics"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    description: "Collaborative project management tool with drag-and-drop boards, team assignments, and progress tracking.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop",
-    techStack: {
-      frontend: ["Next.js", "React Query", "Framer Motion"],
-      backend: ["Supabase", "Edge Functions"],
-      tools: ["Vercel", "GitHub Actions"],
-    },
-    features: ["Kanban boards", "Real-time sync", "Team collaboration"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    id: 3,
-    title: "Analytics Dashboard",
-    description: "Data visualization platform for business intelligence with customizable widgets and automated reporting.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-    techStack: {
-      frontend: ["React", "D3.js", "Recharts"],
-      backend: ["Python", "FastAPI", "Redis"],
-      tools: ["Docker", "GCP", "BigQuery"],
-    },
-    features: ["Custom dashboards", "Export reports", "API integrations"],
-    github: "#",
-    demo: "#",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
