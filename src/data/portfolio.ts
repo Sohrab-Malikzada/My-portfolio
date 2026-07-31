@@ -49,8 +49,8 @@ export const projects = [
       tools: ["Docker", "AWS", "Stripe"],
     },
     features: ["Real-time inventory", "Secure checkout", "Admin analytics"],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/username/ecommerce-platform",
+    demo: "https://ecommerce-platform.example.com",
   },
   {
     id: 2,
@@ -65,8 +65,8 @@ export const projects = [
       tools: ["Vercel", "GitHub Actions"],
     },
     features: ["Kanban boards", "Real-time sync", "Team collaboration"],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/username/task-management-app",
+    demo: "https://task-manager.example.com",
   },
   {
     id: 3,
@@ -81,8 +81,8 @@ export const projects = [
       tools: ["Docker", "GCP", "BigQuery"],
     },
     features: ["Custom dashboards", "Export reports", "API integrations"],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/username/analytics-dashboard",
+    demo: "https://analytics-dashboard.example.com",
   },
 ];
 
