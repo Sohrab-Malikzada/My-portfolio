@@ -33,6 +33,8 @@ export const about = {
   ],
 };
 
+// NOTE: each project has its OWN GitHub + live demo URL.
+// Replace the placeholder URLs below with the real ones per project.
 export const projects = [
   {
     id: 1,
