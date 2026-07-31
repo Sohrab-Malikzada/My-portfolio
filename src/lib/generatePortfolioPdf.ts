@@ -277,7 +277,7 @@ export async function generatePortfolioPdf() {
   );
 
   projects.forEach((p, idx) => {
-    ensure(110);
+    ensure(122);
     if (idx > 0) {
       doc.setDrawColor(...LINE);
       doc.line(M, y, PAGE_W - M, y);
@@ -427,7 +427,20 @@ export async function generatePortfolioPdf() {
 
   text("ELSEWHERE", { size: 8.5, style: "bold", color: MUTED, gap: 2 });
   profile.socials.forEach((s) => {
-    text(`${s.label}   \u2014   ${s.value}`, { size: 10.5, gap: 1.5 });
+    ensure(7);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10.5);
+    doc.setTextColor(...INK);
+    const label = `${s.label}   \u2014   `;
+    doc.text(label, M, y + 3.7);
+    const lx = M + doc.getTextWidth(label);
+    doc.setTextColor(...DEV);
+    const url = s.value.startsWith("http") ? s.value : `https://${s.value}`;
+    doc.textWithLink(s.value, lx, y + 3.7, { url });
+    doc.setDrawColor(...DEV);
+    doc.setLineWidth(0.15);
+    doc.line(lx, y + 4.7, lx + doc.getTextWidth(s.value), y + 4.7);
+    y += 7;
   });
 
   footer();
