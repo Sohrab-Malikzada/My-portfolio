@@ -1,28 +1,29 @@
-## Goal
+## هدف
+هر پروژه لینک GitHub و Live Demo مخصوص خودش را دارد؛ این لینک‌ها باید هم در سایت درست کار کنند و هم در PDF پورتفولیو به‌صورت کلیک‌پذیر نمایش داده شوند.
 
-Add a **Download Portfolio** button to the top navigation. Clicking it generates and downloads a complete, professionally designed multi-page PDF (in English) containing all portfolio content.
+## وضعیت فعلی (بررسی‌شده)
+- در `src/data/portfolio.ts` هر سه پروژه مقدار `github: "#"` و `demo: "#"` دارند (placeholder یکسان).
+- در `src/lib/generatePortfolioPdf.ts` هیچ رندری برای لینک‌ها وجود ندارد — به همین دلیل در PDF دیده نمی‌شوند.
 
-## PDF Structure
+## کاری که انجام می‌شود
 
-1. **Cover page** — name (Sohrab Malikzada), the three roles (Front-end Developer / Graphic Designer / Professional Painter), the hero tagline, and date.
-2. **About** — the two intro paragraphs plus the three discipline cards (Development, Design, Art) with their skill lists.
-3. **Development projects** — for each of the 3 projects: screenshot image, title, description, tech stack (frontend / backend / tools), and key features.
-4. **Design work** — grid of the design projects with image, title, category, and tools.
-5. **Fine art** — gallery of the 6 artworks with image, title, medium, year, and dimensions.
-6. **Contact** — email and social links, closing line.
+1. **داده‌ها (`src/data/portfolio.ts`)**
+   - فیلدهای `github` و `demo` هر پروژه به‌صورت جداگانه و مستقل نگه داشته می‌شوند (هر پروژه URL خودش).
+   - چون هنوز آدرس‌های واقعی را نداده‌اید، مقادیر موقتی و متمایز برای هر پروژه قرار می‌گیرد (مثلاً `github.com/username/ecommerce-platform`, `github.com/username/task-manager`, `github.com/username/analytics-dashboard` و دموهای متناظر) با یک کامنت واضح در بالای فایل برای جایگزینی آسان. هر زمان لینک‌های واقعی را بفرستید، فقط همین یک فایل به‌روزرسانی می‌شود.
 
-Design matches the site: Cormorant Garamond–style serif headings, clean sans body, warm off-white background, and the three discipline accent colors (blue / orange / gold) used as section markers.
+2. **PDF (`src/lib/generatePortfolioPdf.ts`)**
+   - زیر هر پروژه در بخش Development دو خط اضافه می‌شود:
+     - `GitHub: <url>`
+     - `Live Demo: <url>`
+   - متن با رنگ accent و کلیک‌پذیر (لینک واقعی داخل PDF) رندر می‌شود.
+   - اگر یک پروژه لینکی نداشت (خالی یا `#`)، آن خط اصلاً چاپ نمی‌شود.
+   - ارتفاع کارت هر پروژه و منطق شکست صفحه متناسب با خطوط جدید تنظیم می‌شود تا متن بیرون نزند یا روی هم نیفتد.
 
-## Behavior
+3. **بخش تماس در PDF (اختیاری، همراه همین تغییر)**
+   - لینک‌های GitHub/LinkedIn در صفحهٔ Contact هم کلیک‌پذیر می‌شوند تا رفتار یکنواخت باشد.
 
-- Button sits in the desktop nav next to the theme toggle, and inside the mobile menu.
-- On click: shows a loading state ("Preparing…"), builds the PDF, then downloads as `Sohrab-Malikzada-Portfolio.pdf`.
-- Content is pulled from shared data so the PDF always matches what's on the page.
+4. **سایت**
+   - دکمه‌های GitHub/Demo در `DevelopmentSection.tsx` به همان مقادیر هر پروژه وصل می‌شوند (باز شدن در تب جدید، `rel="noopener noreferrer"`).
 
-## Technical notes
-
-- Add `jspdf` for PDF generation (vector text, real pages, selectable text — not screenshots).
-- Extract the currently-inline project/artwork/design arrays into a shared `src/data/portfolio.ts` module, imported by both the sections and the PDF generator, so there is one source of truth.
-- New `src/lib/generatePortfolioPdf.ts` builds the document: page helpers (header, footer with page numbers), text wrapping, and image embedding.
-- Images are remote Unsplash URLs; they'll be fetched and converted to data URLs before embedding, with a graceful fallback (colored placeholder block) if a fetch fails, so the download never breaks.
-- New `src/components/DownloadPortfolioButton.tsx` handles the click, loading state, and toast on error; used in `Navigation.tsx` for both desktop and mobile.
+## بررسی نهایی
+PDF تولید و صفحه‌به‌صفحه بازبینی می‌شود تا مطمئن شویم لینک هر پروژه درست، مجزا و بدون بریدگی متن نمایش داده می‌شود.

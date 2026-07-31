@@ -277,7 +277,7 @@ export async function generatePortfolioPdf() {
   );
 
   projects.forEach((p, idx) => {
-    ensure(110);
+    ensure(122);
     if (idx > 0) {
       doc.setDrawColor(...LINE);
       doc.line(M, y, PAGE_W - M, y);
@@ -322,7 +322,33 @@ export async function generatePortfolioPdf() {
       M,
       y + 3.2,
     );
-    y += 12;
+    y += 8;
+
+    const links: Array<[string, string]> = [
+      ["GitHub", p.github],
+      ["Live Demo", p.demo],
+    ].filter(([, url]) => url && url !== "#") as Array<[string, string]>;
+
+    links.forEach(([label, url]) => {
+      ensure(6);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8);
+      doc.setTextColor(...MUTED);
+      doc.text(label.toUpperCase(), M, y + 3.2);
+      const lbW = 22;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(...DEV);
+      const shown = url.replace(/^https?:\/\//, "");
+      doc.textWithLink(shown, M + lbW, y + 3.2, { url });
+      const tw = doc.getTextWidth(shown);
+      doc.setDrawColor(...DEV);
+      doc.setLineWidth(0.15);
+      doc.line(M + lbW, y + 4.2, M + lbW + tw, y + 4.2);
+      y += 5.5;
+    });
+
+    y += 6;
   });
 
   /* ---------- 4. Design ---------- */
@@ -401,7 +427,20 @@ export async function generatePortfolioPdf() {
 
   text("ELSEWHERE", { size: 8.5, style: "bold", color: MUTED, gap: 2 });
   profile.socials.forEach((s) => {
-    text(`${s.label}   \u2014   ${s.value}`, { size: 10.5, gap: 1.5 });
+    ensure(7);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10.5);
+    doc.setTextColor(...INK);
+    const label = `${s.label}   \u2014   `;
+    doc.text(label, M, y + 3.7);
+    const lx = M + doc.getTextWidth(label);
+    doc.setTextColor(...DEV);
+    const url = s.value.startsWith("http") ? s.value : `https://${s.value}`;
+    doc.textWithLink(s.value, lx, y + 3.7, { url });
+    doc.setDrawColor(...DEV);
+    doc.setLineWidth(0.15);
+    doc.line(lx, y + 4.7, lx + doc.getTextWidth(s.value), y + 4.7);
+    y += 7;
   });
 
   footer();

@@ -135,13 +135,24 @@ export const DevelopmentSection = () => {
               {/* Links */}
               <div className="flex gap-4 pt-2">
                 <Button variant="outline" size="sm" asChild>
-                  <a href={project.github} className="gap-2">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gap-2"
+                    aria-label={`View source code of ${project.title} on GitHub`}
+                  >
                     <Github className="h-4 w-4" />
                     Code
                   </a>
                 </Button>
                 <Button size="sm" className="gap-2 bg-dev hover:bg-dev/90" asChild>
-                  <a href={project.demo}>
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open live demo of ${project.title}`}
+                  >
                     <ExternalLink className="h-4 w-4" />
                     Live Demo
                   </a>
