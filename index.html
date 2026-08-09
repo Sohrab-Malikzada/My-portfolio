@@ -17,6 +17,18 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          if (stored !== "light") document.documentElement.classList.add("dark");
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
   </head>
 
   <body>
