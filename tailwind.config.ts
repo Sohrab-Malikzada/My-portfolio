@@ -62,22 +62,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Discipline-specific accent colors
-        dev: {
-          DEFAULT: "hsl(var(--dev-accent))",
-          foreground: "hsl(var(--dev-accent-foreground))",
-          muted: "hsl(var(--dev-muted))",
+        success: {
+          DEFAULT: "hsl(var(--success))",
         },
-        design: {
-          DEFAULT: "hsl(var(--design-accent))",
-          foreground: "hsl(var(--design-accent-foreground))",
-          muted: "hsl(var(--design-muted))",
+        surface: {
+          DEFAULT: "hsl(var(--surface))",
+          2: "hsl(var(--surface-2))",
         },
-        art: {
-          DEFAULT: "hsl(var(--art-accent))",
-          foreground: "hsl(var(--art-accent-foreground))",
-          muted: "hsl(var(--art-muted))",
-        },
+
       },
       borderRadius: {
         lg: "var(--radius)",
