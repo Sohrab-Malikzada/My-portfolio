@@ -1,75 +1,75 @@
 import { motion } from "framer-motion";
-import { Code2, Palette, Brush } from "lucide-react";
+import { Boxes, Gauge, Lightbulb, Users } from "lucide-react";
+import { SectionHeading } from "./SectionHeading";
+import { about, profile } from "@/data/portfolio";
+
+const icons = [Boxes, Gauge, Lightbulb, Users];
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-24 md:py-32 bg-secondary/30">
+    <section id="about" className="relative py-24 md:py-32">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-center mb-12">
-            About Me
-          </h2>
-          
-          <div className="prose prose-lg max-w-none text-muted-foreground text-center mb-16">
-            <p className="text-xl leading-relaxed">
-              I'm a multidisciplinary creative who believes that the best work happens at the 
-              intersection of technology and art. With over a decade of experience across 
-              software development, graphic design, and fine art, I bring a unique perspective 
-              to every project.
-            </p>
-            <p className="leading-relaxed">
-              My journey began with a paintbrush, evolved through design studios, and 
-              expanded into the world of code. This diverse background allows me to approach 
-              problems holistically—whether I'm architecting a scalable application, crafting 
-              a brand identity, or expressing emotion through paint.
-            </p>
-          </div>
+        <SectionHeading
+          index="01"
+          label="About"
+          title="About"
+          highlight="Me"
+          subtitle="Engineer by training, product builder by instinct."
+        />
 
-          {/* Skills Overview */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="p-6 rounded-xl bg-card border border-border"
-            >
-              <Code2 className="h-8 w-8 text-dev mb-4" />
-              <h3 className="font-serif text-xl font-semibold mb-2">Development</h3>
-              <p className="text-sm text-muted-foreground mb-4">React, TypeScript, Node.js, PostgreSQL, Cloud Architecture</p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="p-6 rounded-xl bg-card border border-border"
-            >
-              <Palette className="h-8 w-8 text-design mb-4" />
-              <h3 className="font-serif text-xl font-semibold mb-2">Design</h3>
-              <p className="text-sm text-muted-foreground mb-4">UI/UX, Branding, Typography, Figma, Adobe Creative Suite</p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="p-6 rounded-xl bg-card border border-border"
-            >
-              <Brush className="h-8 w-8 text-art mb-4" />
-              <h3 className="font-serif text-xl font-semibold mb-2">Fine Art</h3>
-              <p className="text-sm text-muted-foreground mb-4">Oil, Acrylic, Watercolor, Mixed Media, Gallery Exhibitions</p>
-            </motion.div>
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="space-y-5"
+          >
+            {about.paragraphs.map((p) => (
+              <p key={p} className="leading-relaxed text-muted-foreground">
+                {p}
+              </p>
+            ))}
+
+            <div className="grid grid-cols-3 gap-4 pt-4">
+              {profile.stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-xl border border-border bg-card/60 p-4 text-center"
+                >
+                  <p className="text-2xl font-bold text-gradient">{s.value}</p>
+                  <p className="mt-1 font-mono text-[10px] text-muted-foreground">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {about.highlights.map((h, i) => {
+              const Icon = icons[i % icons.length];
+              return (
+                <motion.article
+                  key={h.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="glass-card hover-lift p-5"
+                >
+                  <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-2.5 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mb-2 text-base font-semibold">{h.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {h.description}
+                  </p>
+                </motion.article>
+              );
+            })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,28 +1,36 @@
 import { jsPDF } from "jspdf";
-import { about, artworks, designProjects, profile, projects } from "@/data/portfolio";
+import {
+  about,
+  certificates,
+  contact,
+  education,
+  experience,
+  profile,
+  projects,
+  skillCategories,
+  skills,
+} from "@/data/portfolio";
 
-/* ---------- palette (mirrors the site design system) ---------- */
-const INK: [number, number, number] = [26, 28, 33];
-const MUTED: [number, number, number] = [110, 114, 124];
-const PAPER: [number, number, number] = [251, 250, 247];
-const LINE: [number, number, number] = [223, 220, 213];
-const DEV: [number, number, number] = [26, 122, 255];
-const DESIGN: [number, number, number] = [232, 100, 45];
-const ART: [number, number, number] = [242, 175, 20];
+/* ---------- palette ---------- */
+const INK: [number, number, number] = [26, 28, 40];
+const MUTED: [number, number, number] = [108, 112, 128];
+const PAPER: [number, number, number] = [250, 250, 252];
+const LINE: [number, number, number] = [220, 222, 230];
+const BRAND: [number, number, number] = [67, 97, 238];
+const ACCENT: [number, number, number] = [124, 92, 255];
 
 const PAGE_W = 210;
 const PAGE_H = 297;
 const M = 18;
 const CONTENT_W = PAGE_W - M * 2;
 
-type ImgMap = Record<string, { data: string; w: number; h: number } | null>;
+type Img = { data: string; w: number; h: number } | null;
 
-/* ---------- image loading ---------- */
 const loadImage = (url: string) =>
-  new Promise<{ data: string; w: number; h: number } | null>((resolve) => {
+  new Promise<Img>((resolve) => {
     const img = new Image();
     img.crossOrigin = "anonymous";
-    const done = (v: { data: string; w: number; h: number } | null) => resolve(v);
+    const done = (v: Img) => resolve(v);
     img.onload = () => {
       try {
         const canvas = document.createElement("canvas");
@@ -32,11 +40,7 @@ const loadImage = (url: string) =>
         const ctx = canvas.getContext("2d");
         if (!ctx) return done(null);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        done({
-          data: canvas.toDataURL("image/jpeg", 0.85),
-          w: canvas.width,
-          h: canvas.height,
-        });
+        done({ data: canvas.toDataURL("image/jpeg", 0.85), w: canvas.width, h: canvas.height });
       } catch {
         done(null);
       }
@@ -46,23 +50,13 @@ const loadImage = (url: string) =>
     setTimeout(() => done(null), 15000);
   });
 
-async function loadAllImages(): Promise<ImgMap> {
-  const urls = [
-    ...projects.map((p) => p.image),
-    ...designProjects.map((p) => p.image),
-    ...artworks.map((a) => a.image),
-  ];
-  const results = await Promise.all(urls.map(loadImage));
-  const map: ImgMap = {};
-  urls.forEach((u, i) => (map[u] = results[i]));
-  return map;
-}
-
-/* ---------- pdf builder ---------- */
 export async function generatePortfolioPdf() {
-  const images = await loadAllImages();
-  const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
+  const urls = projects.map((p) => p.image);
+  const loaded = await Promise.all(urls.map(loadImage));
+  const images: Record<string, Img> = {};
+  urls.forEach((u, i) => (images[u] = loaded[i]));
 
+  const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
   let y = M;
   let pageIndex = 0;
 
@@ -79,7 +73,7 @@ export async function generatePortfolioPdf() {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(...MUTED);
-    doc.text(profile.name.toUpperCase(), M, PAGE_H - 9);
+    doc.text(`${profile.name.toUpperCase()}  ·  ${profile.title.toUpperCase()}`, M, PAGE_H - 9);
     doc.text(String(pageIndex), PAGE_W - M, PAGE_H - 9, { align: "right" });
   };
 
@@ -99,7 +93,6 @@ export async function generatePortfolioPdf() {
     value: string,
     opts: {
       size?: number;
-      font?: "times" | "helvetica";
       style?: "normal" | "bold" | "italic";
       color?: [number, number, number];
       lh?: number;
@@ -110,7 +103,6 @@ export async function generatePortfolioPdf() {
   ) => {
     const {
       size = 10,
-      font = "helvetica",
       style = "normal",
       color = INK,
       lh = 1.45,
@@ -118,7 +110,7 @@ export async function generatePortfolioPdf() {
       x = M,
       gap = 0,
     } = opts;
-    doc.setFont(font, style);
+    doc.setFont("helvetica", style);
     doc.setFontSize(size);
     doc.setTextColor(...color);
     const lines = doc.splitTextToSize(value, width) as string[];
@@ -131,317 +123,244 @@ export async function generatePortfolioPdf() {
     y += gap;
   };
 
-  const sectionHeader = (
-    label: string,
-    title: string,
-    accent: [number, number, number],
-    intro?: string,
-  ) => {
+  const sectionHeader = (index: string, label: string, title: string, intro?: string) => {
     addPage();
-    doc.setFillColor(...accent);
+    doc.setFillColor(...BRAND);
     doc.rect(M, y, 14, 1.4, "F");
     y += 7;
-    doc.setFont("helvetica", "bold");
+    doc.setFont("courier", "bold");
     doc.setFontSize(8.5);
-    doc.setTextColor(...accent);
-    doc.text(label.toUpperCase(), M, y);
-    y += 8;
-    text(title, { font: "times", style: "bold", size: 26, gap: 3 });
+    doc.setTextColor(...BRAND);
+    doc.text(`${index} // ${label.toUpperCase()}`, M, y);
+    y += 9;
+    text(title, { style: "bold", size: 24, gap: 3 });
     if (intro) text(intro, { size: 10, color: MUTED, gap: 6 });
     doc.setDrawColor(...LINE);
     doc.line(M, y, PAGE_W - M, y);
     y += 8;
   };
 
-  const drawImage = (url: string, x: number, w: number, h: number) => {
-    const img = images[url];
-    if (img) {
-      try {
-        doc.addImage(img.data, "JPEG", x, y, w, h, undefined, "FAST");
-      } catch {
-        doc.setFillColor(...LINE);
-        doc.rect(x, y, w, h, "F");
-      }
-    } else {
-      doc.setFillColor(...LINE);
-      doc.rect(x, y, w, h, "F");
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(8);
-      doc.setTextColor(...MUTED);
-      doc.text("Image unavailable", x + w / 2, y + h / 2, { align: "center" });
-    }
-    doc.setDrawColor(...LINE);
-    doc.setLineWidth(0.2);
-    doc.rect(x, y, w, h);
+  const link = (label: string, url: string) => {
+    if (!url || url === "#") return;
+    ensure(6);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8);
+    doc.setTextColor(...MUTED);
+    doc.text(label.toUpperCase(), M, y + 3.2);
+    const lbW = 22;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(...BRAND);
+    const shown = url.replace(/^https?:\/\//, "");
+    doc.textWithLink(shown, M + lbW, y + 3.2, { url });
+    doc.setDrawColor(...BRAND);
+    doc.setLineWidth(0.15);
+    doc.line(M + lbW, y + 4.2, M + lbW + doc.getTextWidth(shown), y + 4.2);
+    y += 5.5;
   };
 
-  /* ---------- 1. Cover ---------- */
+  /* ---------- Cover ---------- */
   paintBackground();
-  doc.setFillColor(...INK);
-  doc.rect(0, 0, PAGE_W, 96, "F");
+  doc.setFillColor(30, 30, 46);
+  doc.rect(0, 0, PAGE_W, 104, "F");
+  doc.setFillColor(...BRAND);
+  doc.rect(0, 104, PAGE_W, 1.6, "F");
 
-  doc.setFont("helvetica", "normal");
+  doc.setFont("courier", "normal");
   doc.setFontSize(9);
-  doc.setTextColor(210, 205, 195);
-  doc.text(profile.tagline.toUpperCase().split("").join(" "), M, 38);
+  doc.setTextColor(205, 214, 244);
+  doc.text(`// ${profile.availability.toUpperCase()}`, M, 34);
 
-  doc.setFont("times", "bold");
-  doc.setFontSize(38);
-  doc.setTextColor(252, 251, 248);
-  doc.text(profile.name, M, 58);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(36);
+  doc.setTextColor(255, 255, 255);
+  doc.text(profile.firstName, M, 58);
+  doc.setTextColor(137, 180, 250);
+  doc.text(profile.lastName, M, 74);
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10.5);
-  const rolePalette = [DEV, DESIGN, ART];
-  let rx = M;
-  profile.roles.forEach((role, i) => {
-    doc.setTextColor(...rolePalette[i]);
-    doc.text(role, rx, 72);
-    rx += doc.getTextWidth(role) + 4;
-    if (i < profile.roles.length - 1) {
-      doc.setTextColor(150, 148, 143);
-      doc.text("/", rx, 72);
-      rx += doc.getTextWidth("/") + 4;
-    }
-  });
+  doc.setFont("courier", "normal");
+  doc.setFontSize(11);
+  doc.setTextColor(186, 194, 222);
+  doc.text(profile.title, M, 88);
 
-  y = 116;
-  text(profile.intro, { font: "times", size: 16, color: INK, lh: 1.5, gap: 12 });
+  y = 122;
+  text(profile.intro, { size: 13, lh: 1.5, gap: 12 });
 
   doc.setDrawColor(...LINE);
   doc.line(M, y, PAGE_W - M, y);
   y += 10;
 
-  text("PORTFOLIO CONTENTS", { size: 8.5, style: "bold", color: MUTED, gap: 5 });
+  text("CONTENTS", { size: 8.5, style: "bold", color: MUTED, gap: 5 });
   [
-    "About & Capabilities",
-    "Development \u2014 Full-Stack Projects",
-    "Design \u2014 Visual Works",
-    "Fine Art \u2014 Selected Paintings",
+    "About",
+    "Technical Skills",
+    "Featured Projects",
+    "Work Experience",
+    "Education",
+    "Certifications",
     "Contact",
   ].forEach((item, i) => {
-    text(`${String(i + 1).padStart(2, "0")}   ${item}`, {
-      size: 11,
-      font: "times",
-      gap: 1.5,
-    });
+    text(`${String(i + 1).padStart(2, "0")}   ${item}`, { size: 11, gap: 1.5 });
   });
 
   y = PAGE_H - 30;
   text(
-    `${profile.email}   \u00b7   ${new Date().toLocaleDateString("en-US", {
-      month: "long",
-      year: "numeric",
-    })}`,
+    `${contact.email}   ·   ${contact.channels[3].value}   ·   ${new Date().toLocaleDateString(
+      "en-US",
+      { month: "long", year: "numeric" },
+    )}`,
     { size: 9, color: MUTED },
   );
 
-  /* ---------- 2. About ---------- */
-  sectionHeader("About", "About Me", INK);
-  about.paragraphs.forEach((p) =>
-    text(p, { size: 10.5, color: MUTED, gap: 5 }),
-  );
-  y += 4;
-
-  const colW = (CONTENT_W - 8) / 3;
-  const cardTop = y;
-  const accents = [DEV, DESIGN, ART];
-  let maxCardH = 0;
-  about.disciplines.forEach((d, i) => {
-    const x = M + i * (colW + 4);
-    y = cardTop;
-    doc.setFillColor(246, 244, 240);
-    doc.setDrawColor(...LINE);
-    doc.roundedRect(x, cardTop, colW, 34, 2, 2, "FD");
-    doc.setFillColor(...accents[i]);
-    doc.rect(x + 5, cardTop + 6, 8, 1.2, "F");
-    doc.setFont("times", "bold");
-    doc.setFontSize(13);
+  /* ---------- About ---------- */
+  sectionHeader("01", "About", "About Me");
+  about.paragraphs.forEach((p) => text(p, { size: 10.5, color: MUTED, gap: 5 }));
+  y += 3;
+  about.highlights.forEach((h) => {
+    ensure(16);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
     doc.setTextColor(...INK);
-    doc.text(d.title, x + 5, cardTop + 14);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.setTextColor(...MUTED);
-    const lines = doc.splitTextToSize(d.skills, colW - 10) as string[];
-    lines.forEach((l, li) => doc.text(l, x + 5, cardTop + 20 + li * 4));
-    maxCardH = Math.max(maxCardH, 34);
+    doc.text(h.title, M, y + 4);
+    y += 6;
+    text(h.description, { size: 9.5, color: MUTED, gap: 3 });
   });
-  y = cardTop + maxCardH + 10;
 
-  /* ---------- 3. Development ---------- */
+  /* ---------- Skills ---------- */
   sectionHeader(
-    "Development",
-    "Full-Stack Projects",
-    DEV,
-    "Building scalable, performant applications with modern technologies. From concept to deployment, every line of code serves a purpose.",
+    "02",
+    "Skills",
+    "Technical Skills",
+    "A comprehensive toolkit for building modern full-stack applications.",
   );
+  skillCategories.forEach((cat) => {
+    const items = skills.filter((s) => s.category === cat);
+    ensure(14);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(...BRAND);
+    doc.text(cat, M, y + 4);
+    y += 7;
+    text(items.map((s) => `${s.name} (${s.level}%)`).join("   ·   "), {
+      size: 9.5,
+      color: MUTED,
+      gap: 5,
+    });
+  });
 
+  /* ---------- Projects ---------- */
+  sectionHeader(
+    "03",
+    "Projects",
+    "Featured Projects",
+    "Selected work spanning web platforms, real-time tools, and mobile apps.",
+  );
   projects.forEach((p, idx) => {
-    ensure(122);
+    ensure(120);
     if (idx > 0) {
       doc.setDrawColor(...LINE);
       doc.line(M, y, PAGE_W - M, y);
       y += 8;
     }
-    drawImage(p.image, M, CONTENT_W, 58);
-    y += 58 + 7;
+    const img = images[p.image];
+    if (img) {
+      try {
+        doc.addImage(img.data, "JPEG", M, y, CONTENT_W, 55, undefined, "FAST");
+      } catch {
+        doc.setFillColor(...LINE);
+        doc.rect(M, y, CONTENT_W, 55, "F");
+      }
+    } else {
+      doc.setFillColor(...LINE);
+      doc.rect(M, y, CONTENT_W, 55, "F");
+    }
+    doc.setDrawColor(...LINE);
+    doc.setLineWidth(0.2);
+    doc.rect(M, y, CONTENT_W, 55);
+    y += 55 + 7;
 
-    text(p.title, { font: "times", style: "bold", size: 18, gap: 2 });
-    text(p.description, { size: 10, color: MUTED, gap: 5 });
-
-    const stacks: Array<[string, string[]]> = [
-      ["Frontend", p.techStack.frontend],
-      ["Backend", p.techStack.backend],
-      ["Tools", p.techStack.tools],
-    ];
-    stacks.forEach(([label, items]) => {
-      ensure(6);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(8);
-      doc.setTextColor(...DEV);
-      doc.text(label.toUpperCase(), M, y + 3.2);
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(...INK);
-      doc.setFontSize(9);
-      const lbW = 22;
-      const lines = doc.splitTextToSize(
-        items.join("  \u00b7  "),
-        CONTENT_W - lbW,
-      ) as string[];
-      lines.forEach((l, li) => doc.text(l, M + lbW, y + 3.2 + li * 4));
-      y += Math.max(5.5, lines.length * 4 + 1.5);
+    text(p.title, { style: "bold", size: 16, gap: 2 });
+    text(p.description, { size: 10, color: MUTED, gap: 4 });
+    text(`Tech:  ${p.tech.join("  ·  ")}`, { size: 9, color: INK, gap: 2 });
+    text(`Key features:  ${p.features.join("   •   ")}`, {
+      size: 9,
+      color: MUTED,
+      gap: 4,
     });
+    link("GitHub", p.github);
+    link("Live Demo", p.demo);
+    y += 6;
+  });
 
-    y += 3;
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9);
-    doc.setTextColor(...MUTED);
-    ensure(6);
-    doc.text(
-      "Key features:  " + p.features.join("   \u2022   "),
-      M,
-      y + 3.2,
-    );
-    y += 8;
+  /* ---------- Experience ---------- */
+  sectionHeader(
+    "04",
+    "Experience",
+    "Work Experience",
+    "Professional experience building real-world software applications.",
+  );
+  experience.forEach((job, idx) => {
+    ensure(60);
+    if (idx > 0) {
+      doc.setDrawColor(...LINE);
+      doc.line(M, y, PAGE_W - M, y);
+      y += 7;
+    }
+    text(job.role, { style: "bold", size: 14, gap: 1 });
+    text(`${job.company}  ·  ${job.type}`, { size: 10, color: BRAND, gap: 1 });
+    text(`${job.period}  ·  ${job.location}`, { size: 9, color: MUTED, gap: 4 });
+    job.points.forEach((point) => text(`•  ${point}`, { size: 9.5, color: MUTED, gap: 1 }));
+    y += 2;
+    text(`Impact: ${job.impact}`, { size: 9.5, style: "italic", color: INK, gap: 3 });
+    text(`Tech: ${job.tech.join("  ·  ")}`, { size: 9, color: MUTED, gap: 7 });
+  });
 
-    const links: Array<[string, string]> = [
-      ["GitHub", p.github],
-      ["Live Demo", p.demo],
-    ].filter(([, url]) => url && url !== "#") as Array<[string, string]>;
+  /* ---------- Education ---------- */
+  sectionHeader("05", "Education", education.school);
+  text(education.degree, { style: "bold", size: 13, gap: 2 });
+  text(`${education.period}  ·  ${education.location}`, {
+    size: 9.5,
+    color: MUTED,
+    gap: 4,
+  });
+  text(education.description, { size: 10, color: MUTED, gap: 7 });
+  text("RELEVANT COURSEWORK", { size: 8.5, style: "bold", color: MUTED, gap: 3 });
+  education.coursework.forEach((c, i) =>
+    text(`${String(i + 1).padStart(2, "0")}   ${c}`, { size: 10, gap: 1 }),
+  );
 
-    links.forEach(([label, url]) => {
+  /* ---------- Certifications ---------- */
+  sectionHeader("06", "Certifications", "Certifications");
+  certificates.forEach((c) => {
+    ensure(26);
+    text(c.title, { style: "bold", size: 12, gap: 1 });
+    text(`${c.issuer}  ·  ${c.year}`, { size: 9.5, color: BRAND, gap: 2 });
+    text(c.description, { size: 9.5, color: MUTED, gap: 6 });
+  });
+
+  /* ---------- Contact ---------- */
+  sectionHeader("07", "Contact", contact.headline, contact.intro);
+  text(contact.blurb, { size: 10.5, color: MUTED, gap: 8 });
+  contact.channels.forEach((c) => {
+    if (c.href && c.href.startsWith("http")) {
+      link(c.label, c.href);
+    } else {
       ensure(6);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(8);
       doc.setTextColor(...MUTED);
-      doc.text(label.toUpperCase(), M, y + 3.2);
-      const lbW = 22;
+      doc.text(c.label.toUpperCase(), M, y + 3.2);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(9);
-      doc.setTextColor(...DEV);
-      const shown = url.replace(/^https?:\/\//, "");
-      doc.textWithLink(shown, M + lbW, y + 3.2, { url });
-      const tw = doc.getTextWidth(shown);
-      doc.setDrawColor(...DEV);
-      doc.setLineWidth(0.15);
-      doc.line(M + lbW, y + 4.2, M + lbW + tw, y + 4.2);
+      doc.setTextColor(...INK);
+      doc.text(c.value, M + 22, y + 3.2);
       y += 5.5;
-    });
-
-    y += 6;
+    }
   });
 
-  /* ---------- 4. Design ---------- */
-  sectionHeader(
-    "Design",
-    "Visual Works",
-    DESIGN,
-    "Crafting memorable visual experiences through branding, user interfaces, and print design. Every project tells a story.",
-  );
-
-  const gW = (CONTENT_W - 6) / 2;
-  const gImgH = 46;
-  const cellH = gImgH + 16;
-  designProjects.forEach((p, i) => {
-    const col = i % 2;
-    if (col === 0) ensure(cellH + 4);
-    const x = M + col * (gW + 6);
-    const rowTop = y;
-    drawImage(p.image, x, gW, gImgH);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(7.5);
-    doc.setTextColor(...DESIGN);
-    doc.text(p.category.toUpperCase(), x, rowTop + gImgH + 6);
-    doc.setFont("times", "bold");
-    doc.setFontSize(12);
-    doc.setTextColor(...INK);
-    doc.text(p.title, x, rowTop + gImgH + 11.5);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.setTextColor(...MUTED);
-    doc.text(p.tools.join("  \u00b7  "), x, rowTop + gImgH + 15.5);
-    y = rowTop;
-    if (col === 1 || i === designProjects.length - 1) y = rowTop + cellH + 6;
-  });
-
-  /* ---------- 5. Fine Art ---------- */
-  sectionHeader(
-    "Fine Art",
-    "Selected Paintings",
-    ART,
-    "Original works across oil, acrylic, watercolor, and mixed media \u2014 exhibited in galleries and private collections.",
-  );
-
-  const aW = (CONTENT_W - 8) / 2;
-  const aImgH = 62;
-  const aCellH = aImgH + 18;
-  artworks.forEach((a, i) => {
-    const col = i % 2;
-    if (col === 0) ensure(aCellH + 4);
-    const x = M + col * (aW + 8);
-    const rowTop = y;
-    drawImage(a.image, x, aW, aImgH);
-    doc.setFont("times", "bold");
-    doc.setFontSize(13);
-    doc.setTextColor(...INK);
-    doc.text(a.title, x, rowTop + aImgH + 7);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8.5);
-    doc.setTextColor(...MUTED);
-    doc.text(`${a.medium}, ${a.year}`, x, rowTop + aImgH + 12);
-    doc.text(a.dimensions, x, rowTop + aImgH + 16);
-    y = rowTop;
-    if (col === 1 || i === artworks.length - 1) y = rowTop + aCellH + 8;
-  });
-
-  /* ---------- 6. Contact ---------- */
-  sectionHeader("Contact", "Let's Work Together", INK);
-  text("Have a project in mind? I'd love to hear from you.", {
-    size: 11,
-    color: MUTED,
-    gap: 10,
-  });
-
-  text("EMAIL", { size: 8.5, style: "bold", color: MUTED, gap: 1 });
-  text(profile.email, { font: "times", size: 16, gap: 8 });
-
-  text("ELSEWHERE", { size: 8.5, style: "bold", color: MUTED, gap: 2 });
-  profile.socials.forEach((s) => {
-    ensure(7);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10.5);
-    doc.setTextColor(...INK);
-    const label = `${s.label}   \u2014   `;
-    doc.text(label, M, y + 3.7);
-    const lx = M + doc.getTextWidth(label);
-    doc.setTextColor(...DEV);
-    const url = s.value.startsWith("http") ? s.value : `https://${s.value}`;
-    doc.textWithLink(s.value, lx, y + 3.7, { url });
-    doc.setDrawColor(...DEV);
-    doc.setLineWidth(0.15);
-    doc.line(lx, y + 4.7, lx + doc.getTextWidth(s.value), y + 4.7);
-    y += 7;
-  });
+  y += 6;
+  doc.setFillColor(...ACCENT);
+  doc.rect(M, y, 14, 1.2, "F");
 
   footer();
   doc.save("Sohrab-Malikzada-Portfolio.pdf");
