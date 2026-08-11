@@ -345,6 +345,9 @@ export async function generatePortfolioPdf() {
   education.coursework.forEach((c, i) =>
     text(`${String(i + 1).padStart(2, "0")}   ${c}`, { size: 10, gap: 1 }),
   );
+  y += 6;
+  text("LANGUAGES", { size: 8.5, style: "bold", color: MUTED, gap: 3 });
+  languages.forEach((l) => text(`${l.name} — ${l.level}`, { size: 10, gap: 1 }));
 
   /* ---------- Certifications ---------- */
   sectionHeader("06", "Certifications", "Certifications");
