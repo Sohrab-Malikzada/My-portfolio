@@ -186,8 +186,22 @@ export async function generatePortfolioPdf() {
   doc.setTextColor(186, 194, 222);
   doc.text(profile.title, M, 88);
 
+  if (portrait) {
+    const size = 44;
+    const px = PAGE_W - M - size;
+    const py = 26;
+    try {
+      doc.addImage(portrait.data, "JPEG", px, py, size, size, undefined, "FAST");
+      doc.setDrawColor(...BRAND);
+      doc.setLineWidth(0.8);
+      doc.rect(px, py, size, size);
+    } catch {
+      /* ignore */
+    }
+  }
+
   y = 122;
-  text(profile.intro, { size: 13, lh: 1.5, gap: 12 });
+  text(profile.intro, { size: 12, lh: 1.5, gap: 10 });
 
   doc.setDrawColor(...LINE);
   doc.line(M, y, PAGE_W - M, y);
@@ -199,7 +213,7 @@ export async function generatePortfolioPdf() {
     "Technical Skills",
     "Featured Projects",
     "Work Experience",
-    "Education",
+    "Education & Languages",
     "Certifications",
     "Contact",
   ].forEach((item, i) => {
@@ -208,7 +222,7 @@ export async function generatePortfolioPdf() {
 
   y = PAGE_H - 30;
   text(
-    `${contact.email}   ·   ${contact.channels[3].value}   ·   ${new Date().toLocaleDateString(
+    `${contact.email}   ·   ${contact.phone}   ·   ${contact.location}   ·   ${new Date().toLocaleDateString(
       "en-US",
       { month: "long", year: "numeric" },
     )}`,
