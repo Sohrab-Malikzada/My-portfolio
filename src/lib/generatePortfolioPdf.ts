@@ -57,6 +57,7 @@ export async function generatePortfolioPdf() {
   const loaded = await Promise.all(urls.map(loadImage));
   const images: Record<string, Img> = {};
   urls.forEach((u, i) => (images[u] = loaded[i]));
+  const portrait = await loadImage(profileAsset.url);
 
   const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
   let y = M;
