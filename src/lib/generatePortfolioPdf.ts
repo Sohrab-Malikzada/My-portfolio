@@ -11,7 +11,7 @@ import {
   skillCategories,
   skills,
 } from "@/data/portfolio";
-import profileAsset from "@/assets/sohrab-profile.png.asset.json";
+import profileImage from "@/assets/sohrab-profile.jpg";
 
 /* ---------- palette ---------- */
 const INK: [number, number, number] = [26, 28, 40];
@@ -57,7 +57,7 @@ export async function generatePortfolioPdf() {
   const loaded = await Promise.all(urls.map(loadImage));
   const images: Record<string, Img> = {};
   urls.forEach((u, i) => (images[u] = loaded[i]));
-  const portrait = await loadImage(profileAsset.url);
+  const portrait = await loadImage(profileImage);
 
   const doc = new jsPDF({ unit: "mm", format: "a4", compress: true });
   let y = M;

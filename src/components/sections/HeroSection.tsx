@@ -4,7 +4,7 @@ import { ArrowRight, Github, Linkedin, Mail, Terminal, Triangle } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { DownloadPortfolioButton } from "@/components/DownloadPortfolioButton";
 import { profile, contact, githubUrl, linkedinUrl, vercelUrl } from "@/data/portfolio";
-import profileAsset from "@/assets/sohrab-profile.png.asset.json";
+import profileImage from "@/assets/sohrab-profile.jpg";
 
 const useTypewriter = (words: string[]) => {
   const [text, setText] = useState("");
@@ -172,10 +172,10 @@ export const HeroSection = () => {
           >
             <div className="relative overflow-hidden rounded-3xl border border-border bg-card glow-ring">
               <img
-                src={profileAsset.url}
+                src={profileImage}
                 alt="Portrait of Sohrab Malikzada, aspiring full-stack developer"
-                width={1242}
-                height={1242}
+                width={900}
+                height={900}
                 className="h-full w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
