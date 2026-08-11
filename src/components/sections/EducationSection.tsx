@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { BookOpen, Calendar, GraduationCap, MapPin } from "lucide-react";
-import { education } from "@/data/portfolio";
+import { BookOpen, Calendar, GraduationCap, MapPin, Languages } from "lucide-react";
+import { education, languages } from "@/data/portfolio";
 
 export const EducationSection = () => {
   return (
@@ -49,6 +49,28 @@ export const EducationSection = () => {
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               {education.description}
             </p>
+
+            <div className="mt-7 border-t border-border pt-5">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="rounded-lg bg-accent/10 p-2 text-accent">
+                  <Languages className="h-4 w-4" />
+                </span>
+                <h4 className="text-sm font-bold">Languages</h4>
+              </div>
+              <ul className="space-y-2">
+                {languages.map((l) => (
+                  <li
+                    key={l.name}
+                    className="flex items-center justify-between text-sm"
+                  >
+                    <span className="font-medium">{l.name}</span>
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {l.level}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
 
           <motion.div

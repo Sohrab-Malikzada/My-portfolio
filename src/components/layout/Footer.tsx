@@ -1,5 +1,12 @@
-import { Code2, Github, Linkedin, Mail, Heart } from "lucide-react";
-import { navSections, profile, contact } from "@/data/portfolio";
+import { Code2, Github, Linkedin, Mail, Heart, Triangle } from "lucide-react";
+import {
+  navSections,
+  profile,
+  contact,
+  githubUrl,
+  linkedinUrl,
+  vercelUrl,
+} from "@/data/portfolio";
 
 export const Footer = () => (
   <footer className="border-t border-border py-12">
@@ -28,12 +35,9 @@ export const Footer = () => (
 
         <div className="flex gap-2">
           {[
-            { icon: Github, href: "https://github.com/Sohrab-Malikzada", label: "GitHub" },
-            {
-              icon: Linkedin,
-              href: "https://linkedin.com/in/sohrab-malikzada",
-              label: "LinkedIn",
-            },
+            { icon: Github, href: githubUrl, label: "GitHub" },
+            { icon: Linkedin, href: linkedinUrl, label: "LinkedIn" },
+            { icon: Triangle, href: vercelUrl, label: "Vercel" },
             { icon: Mail, href: `mailto:${contact.email}`, label: "Email" },
           ].map((s) => (
             <a

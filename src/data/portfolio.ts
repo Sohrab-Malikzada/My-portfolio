@@ -2,93 +2,88 @@ export const profile = {
   name: "Sohrab Malikzada",
   firstName: "Sohrab",
   lastName: "Malikzada",
-  title: "Full Stack Developer",
+  title: "Aspiring Full-Stack Developer",
   roles: [
-    "Full Stack Developer",
+    "Aspiring Full-Stack Developer",
     "React.js Developer",
-    "Node.js Developer",
-    "MERN Stack Engineer",
+    "Node.js & Express Developer",
+    "Software Engineering Student",
   ],
   availability: "Available for opportunities",
   intro:
-    "Full Stack Developer with 2+ years of professional experience building scalable, high-performance web and mobile applications. Specializing in the MERN stack with a focus on clean architecture and exceptional user experience.",
+    "Software Engineering student focused on full-stack web development, with hands-on experience from a three-month software engineering internship and personal projects. I work with React.js, JavaScript, Node.js, Express.js and MongoDB — building user interfaces, REST APIs and database integrations — and I'm currently expanding into Next.js and React Native.",
   stats: [
-    { value: "2+", label: "Years Experience" },
-    { value: "15+", label: "Projects Built" },
-    { value: "6", label: "Certifications" },
+    { value: "3", label: "Months Internship" },
+    { value: "10+", label: "Projects Built" },
+    { value: "3", label: "Languages Spoken" },
   ],
 };
 
 export const about = {
   paragraphs: [
-    "I'm a full stack developer based in Kabul, Afghanistan, currently pursuing a Bachelor of Science in Computer Science at Rana University while building real-world products for clients and teams.",
-    "My work sits where engineering discipline meets product craft: type-safe React front-ends, well-structured Node.js APIs, and databases modeled for the way people actually use software. I care about clean architecture, accessible interfaces, and shipping features that hold up in production.",
+    "I'm a Software Engineering student at Rana University in Kabul, Afghanistan, focused on full-stack web development. I gained hands-on industry experience through a three-month software engineering internship at Top In Town Technology, and I keep learning by building personal projects.",
+    "My day-to-day toolkit is React.js, JavaScript and Tailwind CSS on the front end, with Node.js, Express.js and MongoDB on the back end. I enjoy responsive interfaces, clean REST APIs and database integration — and I'm currently expanding my knowledge of Next.js and React Native.",
   ],
   highlights: [
     {
-      title: "Clean Architecture",
+      title: "Responsive Web Design",
       description:
-        "Modular, testable code with clear boundaries between UI, domain logic, and data access.",
+        "Interfaces that work well on every screen size, with usability and user experience as the starting point.",
     },
     {
-      title: "Performance First",
+      title: "API & Database Integration",
       description:
-        "Fast loads, lean bundles, and smooth interactions measured with real metrics — not guesses.",
+        "REST APIs with Node.js and Express, connected to MongoDB through Mongoose for real, persistent data.",
     },
     {
-      title: "Product Mindset",
+      title: "Problem Solving",
       description:
-        "I ask why before how, and design flows around the person on the other side of the screen.",
+        "Debugging complex UI and logic issues patiently until the root cause — not just the symptom — is fixed.",
     },
     {
-      title: "Team Collaboration",
+      title: "Version Control & Teamwork",
       description:
-        "Code reviews, agile sprints, and Git workflows that keep a team moving in the same direction.",
+        "Git and GitHub workflows, code reviews and agile collaboration practiced during my internship.",
     },
   ],
 };
 
-export type SkillCategory = "Frontend" | "Backend" | "Database" | "Tools";
+export type SkillCategory = "Frontend" | "Backend" | "Other";
 
-export const skillCategories: SkillCategory[] = [
-  "Frontend",
-  "Backend",
-  "Database",
-  "Tools",
-];
+export const skillCategories: SkillCategory[] = ["Frontend", "Backend", "Other"];
 
 export const skills: Array<{
   name: string;
   level: number;
   category: SkillCategory;
 }> = [
-  { name: "HTML5", level: 95, category: "Frontend" },
-  { name: "CSS3", level: 90, category: "Frontend" },
-  { name: "JavaScript", level: 88, category: "Frontend" },
-  { name: "TypeScript", level: 85, category: "Frontend" },
-  { name: "React.js", level: 90, category: "Frontend" },
-  { name: "React Router", level: 85, category: "Frontend" },
-  { name: "Tailwind CSS", level: 92, category: "Frontend" },
-  { name: "Shadcn UI", level: 80, category: "Frontend" },
-  { name: "Bootstrap", level: 85, category: "Frontend" },
+  { name: "Git / GitHub", level: 70, category: "Frontend" },
+  { name: "HTML", level: 90, category: "Frontend" },
+  { name: "CSS", level: 80, category: "Frontend" },
+  { name: "Tailwind CSS", level: 80, category: "Frontend" },
+  { name: "Bootstrap", level: 80, category: "Frontend" },
+  { name: "jQuery", level: 75, category: "Frontend" },
+  { name: "JavaScript", level: 70, category: "Frontend" },
+  { name: "React.js", level: 75, category: "Frontend" },
+  { name: "Next.js", level: 35, category: "Frontend" },
+  { name: "React Native", level: 30, category: "Frontend" },
+  { name: "Flutter", level: 45, category: "Frontend" },
+  { name: "Dart", level: 60, category: "Frontend" },
+  { name: "Figma", level: 60, category: "Frontend" },
+  { name: "WordPress", level: 50, category: "Frontend" },
 
-  { name: "Node.js", level: 88, category: "Backend" },
-  { name: "Express.js", level: 86, category: "Backend" },
-  { name: "REST APIs", level: 90, category: "Backend" },
-  { name: "JWT & Auth", level: 84, category: "Backend" },
-  { name: "Socket.IO", level: 72, category: "Backend" },
-  { name: "React Native", level: 75, category: "Backend" },
+  { name: "Node.js", level: 70, category: "Backend" },
+  { name: "Express.js", level: 70, category: "Backend" },
+  { name: "MongoDB", level: 75, category: "Backend" },
+  { name: "Python", level: 30, category: "Backend" },
+  { name: "Firebase", level: 40, category: "Backend" },
+  { name: "Supabase", level: 35, category: "Backend" },
+  { name: "PHP", level: 75, category: "Backend" },
+  { name: "MySQL", level: 70, category: "Backend" },
+  { name: "Laravel", level: 60, category: "Backend" },
+  { name: "Oracle SQL", level: 70, category: "Backend" },
 
-  { name: "MongoDB", level: 88, category: "Database" },
-  { name: "Mongoose", level: 85, category: "Database" },
-  { name: "PostgreSQL", level: 72, category: "Database" },
-  { name: "Firebase", level: 78, category: "Database" },
-
-  { name: "Git & GitHub", level: 92, category: "Tools" },
-  { name: "Vite", level: 84, category: "Tools" },
-  { name: "Postman", level: 88, category: "Tools" },
-  { name: "Figma", level: 75, category: "Tools" },
-  { name: "Vercel", level: 82, category: "Tools" },
+  { name: "Vibe Coding", level: 80, category: "Other" },
 ];
 
 // NOTE: each project has its OWN GitHub + live demo URL.
@@ -157,61 +152,28 @@ export const experience = [
     role: "Software Engineering Intern",
     company: "Top In Town Technology",
     type: "Internship",
-    period: "July 2025 — October 2025",
+    period: "Jul 2025 — Oct 2025",
     location: "Kabul, Afghanistan",
     points: [
-      "Developed and optimized front-end solutions using React.js, JavaScript (ES6+), and Tailwind CSS",
-      "Implemented fully responsive web designs and interactive user interfaces",
-      "Collaborated with the development team in code reviews and agile sprints",
-      "Debugged complex UI issues and optimized component performance",
-      "Managed version control workflows using Git and GitHub",
+      "Developed and optimized front-end interfaces using React.js, TypeScript, JavaScript (ES6) and Tailwind CSS",
+      "Built responsive and interactive user interfaces with a focus on usability and user experience",
+      "Participated in code reviews and Agile development processes",
+      "Used Git and GitHub for version control and team collaboration",
     ],
     impact:
-      "Contributed to successful delivery of multiple web projects; optimized UI components for better performance",
-    tech: ["React.js", "JavaScript (ES6+)", "Bootstrap", "Tailwind CSS", "Git", "GitHub"],
-  },
-  {
-    id: 2,
-    role: "Full Stack Development Training",
-    company: "Top In Town Technology",
-    type: "Training Program",
-    period: "January 2025 — June 2025",
-    location: "Kabul, Afghanistan",
-    points: [
-      "Completed an intensive MERN stack program covering React, Node.js, Express, and MongoDB",
-      "Built and deployed multiple full-stack applications from scratch",
-      "Practiced REST API design, authentication with JWT, and database modeling",
-      "Learned mobile development fundamentals with Flutter and React Native",
-    ],
-    impact:
-      "Graduated with a portfolio of production-style projects covering the full development lifecycle",
-    tech: ["MongoDB", "Express", "React", "Node.js", "React Native"],
-  },
-  {
-    id: 3,
-    role: "Freelance Web Developer",
-    company: "Self-Employed",
-    type: "Freelance",
-    period: "2024 — Present",
-    location: "Remote",
-    points: [
-      "Designed and delivered marketing sites and dashboards for small businesses",
-      "Handled the full cycle: requirements, design, development, deployment, and support",
-      "Improved client site performance and SEO scores with modern build tooling",
-    ],
-    impact: "Delivered 10+ client projects with on-time launches and repeat engagements",
-    tech: ["React", "Vite", "Tailwind CSS", "Node.js", "Vercel"],
+      "Contributed to the delivery of client web projects and improved the performance of shared UI components",
+    tech: ["React.js", "TypeScript", "JavaScript (ES6)", "Tailwind CSS", "Git", "GitHub"],
   },
 ];
 
 export const education = {
   school: "Rana University",
-  degree: "Bachelor of Science in Computer Science",
+  degree: "Bachelor of Computer Science — Software Engineering",
   status: "Current",
-  period: "Started: September 2023 — Present",
+  period: "May 2025 — Present",
   location: "Kabul, Afghanistan",
   description:
-    "Currently pursuing a Computer Science degree with a focus on software engineering, web technologies, and distributed systems. Applying academic knowledge to real-world projects and professional development work.",
+    "Studying Computer Science with a field focus on Software Engineering, while applying what I learn to real web development projects and my internship work.",
   coursework: [
     "Data Structures & Algorithms",
     "Database Management Systems",
@@ -223,6 +185,12 @@ export const education = {
     "Software Architecture",
   ],
 };
+
+export const languages = [
+  { name: "Dari", level: "Native" },
+  { name: "Pashto", level: "Beginner" },
+  { name: "English", level: "Intermediate" },
+];
 
 export const certificates = [
   {
@@ -281,13 +249,19 @@ export const certificates = [
   },
 ];
 
+export const vercelUrl = "https://vercel.com/sohrabmalikzada2003-8136s-projects";
+export const githubUrl = "https://github.com/Sohrab-Malikzada";
+export const linkedinUrl = "https://linkedin.com/in/sohrab-malikzada";
+
 export const contact = {
   headline: "Get In Touch",
   intro:
-    "Open to internships, full-time roles, and exciting collaboration opportunities.",
+    "Open to internships, junior roles, and collaboration on interesting projects.",
   blurb:
-    "Whether you have a project in mind, want to collaborate, or are looking for a dedicated full-stack developer — I'd love to hear from you. I respond within 24 hours.",
+    "Whether you have a project in mind, want to collaborate, or are looking for a motivated full-stack developer — I'd love to hear from you. I respond within 24 hours.",
   email: "sohrabmalikzada2003@gmail.com",
+  phone: "+93 783 473 212",
+  location: "Kabul, Afghanistan",
   channels: [
     {
       label: "Email",
@@ -296,16 +270,28 @@ export const contact = {
       icon: "mail" as const,
     },
     {
+      label: "Phone",
+      value: "+93 783 473 212",
+      href: "tel:+93783473212",
+      icon: "phone" as const,
+    },
+    {
       label: "GitHub",
       value: "github.com/Sohrab-Malikzada",
-      href: "https://github.com/Sohrab-Malikzada",
+      href: githubUrl,
       icon: "github" as const,
     },
     {
       label: "LinkedIn",
       value: "linkedin.com/in/sohrab-malikzada",
-      href: "https://linkedin.com/in/sohrab-malikzada",
+      href: linkedinUrl,
       icon: "linkedin" as const,
+    },
+    {
+      label: "Vercel",
+      value: "sohrabmalikzada.vercel.app",
+      href: vercelUrl,
+      icon: "vercel" as const,
     },
     {
       label: "Location",

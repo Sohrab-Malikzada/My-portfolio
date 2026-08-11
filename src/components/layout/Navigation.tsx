@@ -10,8 +10,8 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
   const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") return true;
-    return localStorage.getItem("theme") !== "light";
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("theme") === "dark";
   });
 
   const { scrollYProgress } = useScroll();
