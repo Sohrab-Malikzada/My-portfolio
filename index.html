@@ -42,15 +42,13 @@
     </script>
 
 
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          if (stored !== "light") document.documentElement.classList.add("dark");
-        } catch (e) {
-          document.documentElement.classList.add("dark");
-        }
+          if (stored === "dark") document.documentElement.classList.add("dark");
+        } catch (e) {}
       })();
     </script>
   </head>

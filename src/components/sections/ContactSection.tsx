@@ -1,5 +1,14 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, ExternalLink, Send } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Triangle,
+  ExternalLink,
+  Send,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,8 +18,10 @@ import { contact } from "@/data/portfolio";
 
 const iconMap = {
   mail: Mail,
+  phone: Phone,
   github: Github,
   linkedin: Linkedin,
+  vercel: Triangle,
   location: MapPin,
 } as const;
 
