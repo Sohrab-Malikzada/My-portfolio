@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, Terminal } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Terminal, Triangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DownloadPortfolioButton } from "@/components/DownloadPortfolioButton";
-import { profile, contact } from "@/data/portfolio";
-import profileImage from "@/assets/profile.jpg";
+import { profile, contact, githubUrl, linkedinUrl, vercelUrl } from "@/data/portfolio";
+import profileAsset from "@/assets/sohrab-profile.png.asset.json";
 
 const useTypewriter = (words: string[]) => {
   const [text, setText] = useState("");
@@ -40,12 +40,9 @@ const useTypewriter = (words: string[]) => {
 };
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/Sohrab-Malikzada", label: "GitHub" },
-  {
-    icon: Linkedin,
-    href: "https://linkedin.com/in/sohrab-malikzada",
-    label: "LinkedIn",
-  },
+  { icon: Github, href: githubUrl, label: "GitHub" },
+  { icon: Linkedin, href: linkedinUrl, label: "LinkedIn" },
+  { icon: Triangle, href: vercelUrl, label: "Vercel" },
   { icon: Mail, href: `mailto:${contact.email}`, label: "Email" },
 ];
 
@@ -175,10 +172,10 @@ export const HeroSection = () => {
           >
             <div className="relative overflow-hidden rounded-3xl border border-border bg-card glow-ring">
               <img
-                src={profileImage}
-                alt="Portrait of Sohrab Malikzada, full stack developer"
-                width={896}
-                height={1152}
+                src={profileAsset.url}
+                alt="Portrait of Sohrab Malikzada, aspiring full-stack developer"
+                width={1242}
+                height={1242}
                 className="h-full w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
