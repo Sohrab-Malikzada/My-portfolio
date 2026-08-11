@@ -168,12 +168,12 @@ export const experience = [
 
 export const education = {
   school: "Rana University",
-  degree: "Bachelor of Science in Computer Science",
+  degree: "Bachelor of Computer Science — Software Engineering",
   status: "Current",
-  period: "Started: September 2023 — Present",
+  period: "May 2025 — Present",
   location: "Kabul, Afghanistan",
   description:
-    "Currently pursuing a Computer Science degree with a focus on software engineering, web technologies, and distributed systems. Applying academic knowledge to real-world projects and professional development work.",
+    "Studying Computer Science with a field focus on Software Engineering, while applying what I learn to real web development projects and my internship work.",
   coursework: [
     "Data Structures & Algorithms",
     "Database Management Systems",
@@ -185,6 +185,12 @@ export const education = {
     "Software Architecture",
   ],
 };
+
+export const languages = [
+  { name: "Dari", level: "Native" },
+  { name: "Pashto", level: "Beginner" },
+  { name: "English", level: "Intermediate" },
+];
 
 export const certificates = [
   {
@@ -243,13 +249,19 @@ export const certificates = [
   },
 ];
 
+export const vercelUrl = "https://vercel.com/sohrabmalikzada2003-8136s-projects";
+export const githubUrl = "https://github.com/Sohrab-Malikzada";
+export const linkedinUrl = "https://linkedin.com/in/sohrab-malikzada";
+
 export const contact = {
   headline: "Get In Touch",
   intro:
-    "Open to internships, full-time roles, and exciting collaboration opportunities.",
+    "Open to internships, junior roles, and collaboration on interesting projects.",
   blurb:
-    "Whether you have a project in mind, want to collaborate, or are looking for a dedicated full-stack developer — I'd love to hear from you. I respond within 24 hours.",
+    "Whether you have a project in mind, want to collaborate, or are looking for a motivated full-stack developer — I'd love to hear from you. I respond within 24 hours.",
   email: "sohrabmalikzada2003@gmail.com",
+  phone: "+93 783 473 212",
+  location: "Kabul, Afghanistan",
   channels: [
     {
       label: "Email",
@@ -258,16 +270,28 @@ export const contact = {
       icon: "mail" as const,
     },
     {
+      label: "Phone",
+      value: "+93 783 473 212",
+      href: "tel:+93783473212",
+      icon: "phone" as const,
+    },
+    {
       label: "GitHub",
       value: "github.com/Sohrab-Malikzada",
-      href: "https://github.com/Sohrab-Malikzada",
+      href: githubUrl,
       icon: "github" as const,
     },
     {
       label: "LinkedIn",
       value: "linkedin.com/in/sohrab-malikzada",
-      href: "https://linkedin.com/in/sohrab-malikzada",
+      href: linkedinUrl,
       icon: "linkedin" as const,
+    },
+    {
+      label: "Vercel",
+      value: "sohrabmalikzada.vercel.app",
+      href: vercelUrl,
+      icon: "vercel" as const,
     },
     {
       label: "Location",
