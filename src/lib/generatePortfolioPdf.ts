@@ -5,11 +5,13 @@ import {
   contact,
   education,
   experience,
+  languages,
   profile,
   projects,
   skillCategories,
   skills,
 } from "@/data/portfolio";
+import profileAsset from "@/assets/sohrab-profile.png.asset.json";
 
 /* ---------- palette ---------- */
 const INK: [number, number, number] = [26, 28, 40];
