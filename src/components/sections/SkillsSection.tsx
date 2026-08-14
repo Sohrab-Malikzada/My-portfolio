@@ -1,12 +1,53 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
-import { skillCategories, skills, type SkillCategory } from "@/data/portfolio";
+import { TechIcon } from "@/components/TechIcon";
+import {
+  additionalSkills,
+  coreSkills,
+  learningSkills,
+  type Tech,
+} from "@/data/portfolio";
+
+const CoreCard = ({ tech, delay }: { tech: Tech; delay: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 18 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.45, delay }}
+    whileHover={{ y: -6 }}
+    className="glass-card group flex flex-col items-center gap-3 p-6"
+  >
+    <TechIcon
+      slug={tech.icon}
+      name={tech.name}
+      className="h-9 w-9 text-muted-foreground transition-all duration-300 group-hover:scale-110 group-hover:text-primary"
+    />
+    <span className="text-center text-sm font-semibold">{tech.name}</span>
+  </motion.div>
+);
+
+const SmallCard = ({ tech, delay }: { tech: Tech; delay: number }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.92 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true, margin: "-40px" }}
+    transition={{ duration: 0.35, delay }}
+    whileHover={{ y: -4 }}
+    className="glass-card group flex items-center gap-2.5 px-4 py-3"
+  >
+    <TechIcon
+      slug={tech.icon}
+      name={tech.name}
+      className="h-4.5 w-4.5 h-[18px] w-[18px] shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
+    />
+    <span className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+      {tech.name}
+    </span>
+  </motion.div>
+);
 
 export const SkillsSection = () => {
-  const [active, setActive] = useState<SkillCategory>("Frontend");
-  const visible = skills.filter((s) => s.category === active);
-
   return (
     <section id="skills" className="relative py-24 md:py-32">
       <div className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 h-72 bg-primary/5 blur-[120px]" />
@@ -16,68 +57,80 @@ export const SkillsSection = () => {
           label="Skills"
           title="Technical"
           highlight="Skills"
-          subtitle="A comprehensive toolkit for building modern full-stack applications."
+          subtitle="My core expertise is the MERN stack, supported by a broader set of technologies I use in real projects."
         />
 
-        <div className="mb-10 flex flex-wrap gap-2">
-          {skillCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`relative rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                active === cat
-                  ? "text-primary-foreground"
-                  : "border border-border bg-card/60 text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {active === cat && (
-                <motion.span
-                  layoutId="skill-pill"
-                  className="absolute inset-0 rounded-full bg-primary"
-                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                />
-              )}
-              <span className="relative z-10">{cat}</span>
-            </button>
-          ))}
+        {/* Core skills */}
+        <div className="mb-16">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-px flex-1 bg-gradient-to-r from-primary/60 to-transparent" />
+            <h3 className="text-lg font-bold">
+              Core <span className="text-gradient">Skills</span>
+            </h3>
+            <span className="h-px flex-1 bg-gradient-to-l from-primary/60 to-transparent" />
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {coreSkills.map((group, gi) => (
+              <div
+                key={group.group}
+                className="rounded-2xl border border-primary/20 bg-primary/[0.03] p-6"
+              >
+                <p className="mb-5 font-mono text-xs uppercase tracking-widest text-primary">
+                  // {group.group}
+                </p>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                  {group.items.map((tech, i) => (
+                    <CoreCard
+                      key={tech.name}
+                      tech={tech}
+                      delay={gi * 0.05 + i * 0.05}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
-            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {visible.map((skill, i) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="glass-card hover-lift p-5"
-              >
-                <div className="mb-3 flex items-baseline justify-between">
-                  <h3 className="font-semibold">{skill.name}</h3>
-                  <span className="font-mono text-xs text-primary">
-                    {skill.level}%
-                  </span>
-                </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-muted">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ duration: 0.9, delay: 0.15 + i * 0.05, ease: "easeOut" }}
-                    className="h-full rounded-full"
-                    style={{ background: "var(--gradient-brand)" }}
-                  />
-                </div>
-              </motion.div>
+        {/* Additional */}
+        <div className="mb-16">
+          <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            // Additional Technologies
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {additionalSkills.map((tech, i) => (
+              <SmallCard key={tech.name} tech={tech} delay={i * 0.03} />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Learning */}
+        <div>
+          <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            // Currently Learning
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {learningSkills.map((tech, i) => (
+              <motion.span
+                key={tech.name}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: i * 0.06 }}
+                className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm text-accent-foreground"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-accent" />
+                <TechIcon
+                  slug={tech.icon}
+                  name={tech.name}
+                  className="h-[16px] w-[16px]"
+                />
+                {tech.name}
+              </motion.span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

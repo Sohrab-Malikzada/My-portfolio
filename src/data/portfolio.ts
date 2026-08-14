@@ -1,28 +1,43 @@
+const awsMlCert = "/__l5e/assets-v1/25a4b1e4-d80d-4a06-aa03-06e32a0c6615/aws-ml.jpg";
+const deeplearningCert =
+  "/__l5e/assets-v1/e9d6dcf0-57bb-4256-b95c-247d83b30283/deeplearning-ai.jpg";
+const internshipCert =
+  "/__l5e/assets-v1/d0a7e1f0-77f3-485d-a29b-f899023f9466/internship-ttt.jpg";
+const mernCert = "/__l5e/assets-v1/bb50eda4-2d85-49d2-9458-dd8b8091dddb/mern-ttt.jpg";
+const simplilearnAiCert =
+  "/__l5e/assets-v1/b20876e9-ecc2-47ea-b153-25bb61973fab/simplilearn-ai.jpg";
+const unSdgCert = "/__l5e/assets-v1/63990d30-83ae-4a7a-9b95-b170a1b004c4/un-sdg.jpg";
+const wfpRupaniCert =
+  "/__l5e/assets-v1/75d94d97-1a45-4ab2-b55b-02938673c238/wfp-rupani.jpg";
+const storeDashboardShot =
+  "/__l5e/assets-v1/8a9cd319-e3c0-47c3-896c-daa25d5161cd/store-dashboard.png";
+
+
 export const profile = {
   name: "Sohrab Malikzada",
   firstName: "Sohrab",
   lastName: "Malikzada",
-  title: "Aspiring Full-Stack Developer",
+  title: "MERN Stack Developer",
   roles: [
-    "Aspiring Full-Stack Developer",
+    "MERN Stack Developer",
     "React.js Developer",
     "Node.js & Express Developer",
     "Software Engineering Student",
   ],
   availability: "Available for opportunities",
   intro:
-    "Software Engineering student focused on full-stack web development, with hands-on experience from a three-month software engineering internship and personal projects. I work with React.js, JavaScript, Node.js, Express.js and MongoDB — building user interfaces, REST APIs and database integrations — and I'm currently expanding into Next.js and React Native.",
+    "Software Engineering student specialised in the MERN stack — React.js, Node.js, Express.js and MongoDB. I build responsive interfaces, clean REST APIs and database-driven dashboards, with hands-on industry experience from a three-month software engineering internship.",
   stats: [
     { value: "3", label: "Months Internship" },
-    { value: "10+", label: "Projects Built" },
+    { value: "7", label: "Certifications" },
     { value: "3", label: "Languages Spoken" },
   ],
 };
 
 export const about = {
   paragraphs: [
-    "I'm a Software Engineering student at Rana University in Kabul, Afghanistan, focused on full-stack web development. I gained hands-on industry experience through a three-month software engineering internship at Top In Town Technology, and I keep learning by building personal projects.",
-    "My day-to-day toolkit is React.js, JavaScript and Tailwind CSS on the front end, with Node.js, Express.js and MongoDB on the back end. I enjoy responsive interfaces, clean REST APIs and database integration — and I'm currently expanding my knowledge of Next.js and React Native.",
+    "I'm a Software Engineering student at Rana University in Kabul, Afghanistan, focused on full-stack web development with the MERN stack. I gained hands-on industry experience through a three-month software engineering internship at Top In Town Technology, and I keep learning by building real projects.",
+    "My day-to-day toolkit is React.js, TypeScript, JavaScript and Tailwind CSS on the front end, with Node.js, Express.js, Mongoose and MongoDB on the back end. I enjoy responsive interfaces, clean REST APIs and database integration — and I'm currently expanding my knowledge of Next.js and React Native.",
   ],
   highlights: [
     {
@@ -48,101 +63,82 @@ export const about = {
   ],
 };
 
-export type SkillCategory = "Frontend" | "Backend" | "Other";
+/* ---------------- Skills (no percentages) ----------------
+ * `icon` is a simple-icons slug key (without the "si" prefix, camelCase),
+ * or null to fall back to a generic icon.
+ */
+export type Tech = { name: string; icon: string | null };
 
-export const skillCategories: SkillCategory[] = ["Frontend", "Backend", "Other"];
+export const coreStack: Tech[] = [
+  { name: "React.js", icon: "React" },
+  { name: "Node.js", icon: "Nodedotjs" },
+  { name: "Express.js", icon: "Express" },
+  { name: "MongoDB", icon: "Mongodb" },
+];
 
-export const skills: Array<{
-  name: string;
-  level: number;
-  category: SkillCategory;
-}> = [
-  { name: "Git / GitHub", level: 70, category: "Frontend" },
-  { name: "HTML", level: 90, category: "Frontend" },
-  { name: "CSS", level: 80, category: "Frontend" },
-  { name: "Tailwind CSS", level: 80, category: "Frontend" },
-  { name: "Bootstrap", level: 80, category: "Frontend" },
-  { name: "jQuery", level: 75, category: "Frontend" },
-  { name: "JavaScript", level: 70, category: "Frontend" },
-  { name: "React.js", level: 75, category: "Frontend" },
-  { name: "Next.js", level: 35, category: "Frontend" },
-  { name: "React Native", level: 30, category: "Frontend" },
-  { name: "Flutter", level: 45, category: "Frontend" },
-  { name: "Dart", level: 60, category: "Frontend" },
-  { name: "Figma", level: 60, category: "Frontend" },
-  { name: "WordPress", level: 50, category: "Frontend" },
+export const coreSkills: Array<{ group: string; items: Tech[] }> = [
+  {
+    group: "Frontend",
+    items: [
+      { name: "HTML5", icon: "Html5" },
+      { name: "CSS3", icon: "Css" },
+      { name: "Tailwind CSS", icon: "Tailwindcss" },
+      { name: "JavaScript", icon: "Javascript" },
+      { name: "React.js", icon: "React" },
+      { name: "TypeScript", icon: "Typescript" },
+    ],
+  },
+  {
+    group: "Backend",
+    items: [
+      { name: "Node.js", icon: "Nodedotjs" },
+      { name: "Express.js", icon: "Express" },
+      { name: "MongoDB", icon: "Mongodb" },
+      { name: "Mongoose", icon: "Mongoose" },
+      { name: "REST APIs", icon: null },
+    ],
+  },
+];
 
-  { name: "Node.js", level: 70, category: "Backend" },
-  { name: "Express.js", level: 70, category: "Backend" },
-  { name: "MongoDB", level: 75, category: "Backend" },
-  { name: "Python", level: 30, category: "Backend" },
-  { name: "Firebase", level: 40, category: "Backend" },
-  { name: "Supabase", level: 35, category: "Backend" },
-  { name: "PHP", level: 75, category: "Backend" },
-  { name: "MySQL", level: 70, category: "Backend" },
-  { name: "Laravel", level: 60, category: "Backend" },
-  { name: "Oracle SQL", level: 70, category: "Backend" },
+export const additionalSkills: Tech[] = [
+  { name: "Bootstrap", icon: "Bootstrap" },
+  { name: "jQuery", icon: "Jquery" },
+  { name: "Python", icon: "Python" },
+  { name: "PHP", icon: "Php" },
+  { name: "MySQL", icon: "Mysql" },
+  { name: "Laravel", icon: "Laravel" },
+  { name: "Oracle SQL", icon: null },
+  { name: "Firebase", icon: "Firebase" },
+  { name: "Supabase", icon: "Supabase" },
+  { name: "Flutter", icon: "Flutter" },
+  { name: "Git & GitHub", icon: "Github" },
+  { name: "WordPress", icon: "Wordpress" },
+  { name: "Figma", icon: "Figma" },
+];
 
-  { name: "Vibe Coding", level: 80, category: "Other" },
+export const learningSkills: Tech[] = [
+  { name: "Next.js", icon: "Nextdotjs" },
+  { name: "React Native", icon: "React" },
 ];
 
 // NOTE: each project has its OWN GitHub + live demo URL.
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    summary: "MERN marketplace with payments and admin analytics",
+    title: "Store Management Dashboard",
+    summary: "Full store operations dashboard with analytics",
     description:
-      "A full-featured online marketplace with real-time inventory management, secure Stripe payments, order tracking, and a role-based admin dashboard.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop",
-    tech: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Stripe"],
-    features: ["Real-time inventory", "Secure checkout", "Admin analytics"],
-    github: "https://github.com/Sohrab-Malikzada/ecommerce-platform",
-    demo: "https://ecommerce-platform.example.com",
+      "A complete store management system covering inventory, sales, purchases, returns, customers, employees, payroll and debts — with a live analytics dashboard, filterable data tables and printable reports.",
+    image: storeDashboardShot,
+    tech: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Vite"],
+    features: [
+      "Inventory & sales tracking",
+      "Employee & payroll management",
+      "Analytics dashboard and reports",
+    ],
+    github: "https://github.com/Sohrab-Malikzada/Store-Managment_Dashborad",
+    demo: "https://template-indol-iota.vercel.app/",
     featured: true,
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    summary: "Realtime kanban collaboration for small teams",
-    description:
-      "Collaborative project management tool with drag-and-drop boards, team assignments, comments, and live progress tracking across devices.",
-    image:
-      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop",
-    tech: ["React", "Socket.IO", "Node.js", "MongoDB", "Tailwind CSS"],
-    features: ["Kanban boards", "Real-time sync", "Team collaboration"],
-    github: "https://github.com/Sohrab-Malikzada/task-management-app",
-    demo: "https://task-manager.example.com",
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "Analytics Dashboard",
-    summary: "Business intelligence with custom widgets",
-    description:
-      "Data visualization platform for business intelligence with customizable widgets, scheduled reports, and REST integrations.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-    tech: ["React", "Recharts", "Express", "PostgreSQL", "Redis"],
-    features: ["Custom dashboards", "Export reports", "API integrations"],
-    github: "https://github.com/Sohrab-Malikzada/analytics-dashboard",
-    demo: "https://analytics-dashboard.example.com",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "Mobile Delivery App",
-    summary: "Cross-platform ordering app in React Native",
-    description:
-      "Cross-platform food delivery application with live order status, map tracking, push notifications, and Firebase authentication.",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop",
-    tech: ["React Native", "Firebase", "Expo", "Node.js"],
-    features: ["Live tracking", "Push notifications", "Firebase auth"],
-    github: "https://github.com/Sohrab-Malikzada/delivery-app",
-    demo: "https://delivery-app.example.com",
-    featured: false,
   },
 ];
 
@@ -152,7 +148,7 @@ export const experience = [
     role: "Software Engineering Intern",
     company: "Top In Town Technology",
     type: "Internship",
-    period: "Jul 2025 — Oct 2025",
+    period: "Jul 5, 2025 — Oct 5, 2025",
     location: "Kabul, Afghanistan",
     points: [
       "Developed and optimized front-end interfaces using React.js, TypeScript, JavaScript (ES6) and Tailwind CSS",
@@ -163,6 +159,8 @@ export const experience = [
     impact:
       "Contributed to the delivery of client web projects and improved the performance of shared UI components",
     tech: ["React.js", "TypeScript", "JavaScript (ES6)", "Tailwind CSS", "Git", "GitHub"],
+    certificateImage: internshipCert,
+    certificateId: "TTT-003463",
   },
 ];
 
@@ -192,60 +190,93 @@ export const languages = [
   { name: "English", level: "Intermediate" },
 ];
 
-export const certificates = [
+export type CertificateGroup = "Professional & Training" | "Online Courses";
+
+export const certificates: Array<{
+  id: number;
+  title: string;
+  issuer: string;
+  year: string;
+  group: CertificateGroup;
+  credentialId?: string;
+  description: string;
+  image: string;
+  url?: string;
+}> = [
   {
     id: 1,
-    title: "Full Stack Web Development",
-    issuer: "Top In Town Technology",
-    year: "2025",
+    title: "Develop and Implement STI for SDGs Roadmaps — Level I",
+    issuer: "UN DESA & UNITAR",
+    year: "Jul 2026",
+    group: "Online Courses",
     description:
-      "Comprehensive full-stack development program covering MERN stack, Flutter, React Native, and modern web technologies.",
-    url: "#",
+      "United Nations course on developing and implementing Science, Technology and Innovation roadmaps for the Sustainable Development Goals.",
+    image: unSdgCert,
   },
   {
     id: 2,
-    title: "React.js Development",
-    issuer: "Online Learning Platform",
-    year: "2024",
+    title: "Vocational Training: Mobile App Development",
+    issuer: "WFP in cooperation with Rupani Foundation",
+    year: "Nov 2025 — Apr 2026",
+    group: "Professional & Training",
     description:
-      "Advanced React.js including hooks, context API, state management, React Router, and performance optimization techniques.",
-    url: "#",
+      "Six-month vocational training program in mobile application development, covering cross-platform app building and practical project work.",
+    image: wfpRupaniCert,
   },
   {
     id: 3,
-    title: "Node.js & Express.js Backend Development",
-    issuer: "Self-Directed Learning",
-    year: "2024",
+    title: "Software Engineering Internship",
+    issuer: "Top In Town Technology",
+    year: "Jul 5 — Oct 5, 2025",
+    group: "Professional & Training",
+    credentialId: "TTT-003463",
     description:
-      "Backend development with Node.js, RESTful API design, authentication with JWT, middleware patterns, and MongoDB integration.",
-    url: "#",
+      "Three-month professional internship building production front-end features with React.js, TypeScript and Tailwind CSS in an Agile team.",
+    image: internshipCert,
   },
   {
     id: 4,
-    title: "MongoDB & Database Design",
-    issuer: "Online Learning Platform",
-    year: "2024",
+    title: "AI For Everyone",
+    issuer: "DeepLearning.AI — Coursera",
+    year: "Sep 2025",
+    group: "Online Courses",
     description:
-      "NoSQL database design, Mongoose ODM, aggregation pipelines, indexing strategies, and data modeling best practices.",
-    url: "#",
+      "Non-technical foundations of artificial intelligence: what AI can and cannot do, AI project workflows and building AI-enabled products.",
+    image: deeplearningCert,
+    url: "https://coursera.org/verify",
   },
   {
     id: 5,
-    title: "Flutter & Dart Mobile Development",
-    issuer: "Self-Directed Learning",
-    year: "2025",
+    title: "AWS Foundations: Machine Learning Basics",
+    issuer: "AWS × Simplilearn SkillUp",
+    year: "Sep 2025",
+    group: "Online Courses",
+    credentialId: "8930008",
     description:
-      "Cross-platform mobile app development with Flutter and Dart, state management, Firebase integration, and native APIs.",
-    url: "#",
+      "Foundational machine learning concepts on AWS, including core ML services, model lifecycle and practical use cases.",
+    image: awsMlCert,
   },
   {
     id: 6,
-    title: "Git & GitHub Version Control",
-    issuer: "Online Learning Platform",
-    year: "2023",
+    title: "Introduction to Artificial Intelligence",
+    issuer: "Simplilearn SkillUp",
+    year: "Sep 2025",
+    group: "Online Courses",
+    credentialId: "8920098",
     description:
-      "Professional version control workflows, branching strategies, pull requests, code reviews, and team collaboration.",
-    url: "#",
+      "Introduction to AI concepts, machine learning fundamentals, neural networks and real-world applications of intelligent systems.",
+    image: simplilearnAiCert,
+  },
+  {
+    id: 7,
+    title: "MERN Stack Development",
+    issuer: "Top In Town Technology",
+    year: "Jan 4 — Jul 2, 2025",
+    group: "Professional & Training",
+    credentialId: "TTT-003462",
+    description:
+      "Six-month intensive MERN stack program: MongoDB, Express.js, React.js and Node.js, REST API design, authentication and deployment.",
+    image: mernCert,
   },
 ];
 
@@ -258,7 +289,7 @@ export const contact = {
   intro:
     "Open to internships, junior roles, and collaboration on interesting projects.",
   blurb:
-    "Whether you have a project in mind, want to collaborate, or are looking for a motivated full-stack developer — I'd love to hear from you. I respond within 24 hours.",
+    "Whether you have a project in mind, want to collaborate, or are looking for a motivated MERN stack developer — I'd love to hear from you. I respond within 24 hours.",
   email: "sohrabmalikzada2003@gmail.com",
   phone: "+93 783 473 212",
   location: "Kabul, Afghanistan",
