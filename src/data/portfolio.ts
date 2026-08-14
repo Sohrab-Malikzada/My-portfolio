@@ -1,11 +1,17 @@
-import awsMlCert from "@/assets/certs/aws-ml.jpg";
-import deeplearningCert from "@/assets/certs/deeplearning-ai.jpg";
-import internshipCert from "@/assets/certs/internship-ttt.jpg";
-import mernCert from "@/assets/certs/mern-ttt.jpg";
-import simplilearnAiCert from "@/assets/certs/simplilearn-ai.jpg";
-import unSdgCert from "@/assets/certs/un-sdg.jpg";
-import wfpRupaniCert from "@/assets/certs/wfp-rupani.jpg";
-import storeDashboardShot from "@/assets/certs/store-dashboard.png";
+const awsMlCert = "/__l5e/assets-v1/25a4b1e4-d80d-4a06-aa03-06e32a0c6615/aws-ml.jpg";
+const deeplearningCert =
+  "/__l5e/assets-v1/e9d6dcf0-57bb-4256-b95c-247d83b30283/deeplearning-ai.jpg";
+const internshipCert =
+  "/__l5e/assets-v1/d0a7e1f0-77f3-485d-a29b-f899023f9466/internship-ttt.jpg";
+const mernCert = "/__l5e/assets-v1/bb50eda4-2d85-49d2-9458-dd8b8091dddb/mern-ttt.jpg";
+const simplilearnAiCert =
+  "/__l5e/assets-v1/b20876e9-ecc2-47ea-b153-25bb61973fab/simplilearn-ai.jpg";
+const unSdgCert = "/__l5e/assets-v1/63990d30-83ae-4a7a-9b95-b170a1b004c4/un-sdg.jpg";
+const wfpRupaniCert =
+  "/__l5e/assets-v1/75d94d97-1a45-4ab2-b55b-02938673c238/wfp-rupani.jpg";
+const storeDashboardShot =
+  "/__l5e/assets-v1/8a9cd319-e3c0-47c3-896c-daa25d5161cd/store-dashboard.png";
+
 
 export const profile = {
   name: "Sohrab Malikzada",
