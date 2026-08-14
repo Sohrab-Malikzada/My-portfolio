@@ -11,7 +11,7 @@ A modern, responsive personal portfolio website showcasing my background, techni
 <p align="center">
   <a href="https://sohrabmalikzada.vercel.app" target="_blank">
     <img 
-      src="./assets/image/HomePage.jpeg" 
+      src="./assets/HomePage.jpeg" 
       alt="Top in Town Technology Website Preview"
       width="100%"
     />
