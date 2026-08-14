@@ -2,7 +2,21 @@
 
 A modern, responsive personal portfolio website showcasing my background, technical skills, projects, education, experience, and certifications as a Software Engineering student and aspiring Full Stack Web Developer.
 
+
 🌐 **Live Portfolio:** https://sohrabmalikzada.vercel.app/
+
+🌍 Live Demo
+
+🔗 Live Website:
+<p align="center">
+  <a href="https://sohrabmalikzada.vercel.app" target="_blank">
+    <img 
+      src="./assets/image/HomePage.jpeg" 
+      alt="Top in Town Technology Website Preview"
+      width="100%"
+    />
+  </a>
+</p>
 
 💻 **GitHub:** https://github.com/Sohrab-Malikzada
 
