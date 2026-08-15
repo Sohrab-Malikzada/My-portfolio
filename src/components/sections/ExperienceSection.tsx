@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, ChevronRight, MapPin } from "lucide-react";
+import { Award, Briefcase, Calendar, ChevronRight, MapPin } from "lucide-react";
+import { ImageLightbox } from "@/components/ImageLightbox";
 import { SectionHeading } from "./SectionHeading";
 import { experience } from "@/data/portfolio";
 
 export const ExperienceSection = () => {
+  const [active, setActive] = useState<{ src: string; alt: string } | null>(null);
+
   return (
     <section id="experience" className="relative py-24 md:py-32">
       <div className="container mx-auto px-6">
@@ -70,6 +74,26 @@ export const ExperienceSection = () => {
                   {job.impact}
                 </p>
 
+                {job.certificateImage && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActive({
+                        src: job.certificateImage,
+                        alt: `${job.role} certificate from ${job.company}`,
+                      })
+                    }
+                    className="mb-5 inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs text-primary transition-colors hover:bg-primary/20"
+                  >
+                    <Award className="h-3.5 w-3.5" /> View certificate
+                    {job.certificateId && (
+                      <span className="font-mono text-[10px] text-muted-foreground">
+                        {job.certificateId}
+                      </span>
+                    )}
+                  </button>
+                )}
+
                 <div className="flex flex-wrap gap-2">
                   {job.tech.map((t) => (
                     <span
@@ -85,6 +109,12 @@ export const ExperienceSection = () => {
           </div>
         </div>
       </div>
+
+      <ImageLightbox
+        src={active?.src ?? null}
+        alt={active?.alt ?? ""}
+        onClose={() => setActive(null)}
+      />
     </section>
   );
 };
