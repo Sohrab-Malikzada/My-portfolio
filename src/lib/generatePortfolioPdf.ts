@@ -8,8 +8,9 @@ import {
   languages,
   profile,
   projects,
-  skillCategories,
-  skills,
+  coreSkills,
+  additionalSkills,
+  learningSkills,
 } from "@/data/portfolio";
 import profileImage from "@/assets/sohrab-profile.jpg";
 
