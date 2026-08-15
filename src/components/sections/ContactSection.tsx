@@ -189,8 +189,16 @@ export const ContactSection = () => {
                 placeholder="Tell me about your project or opportunity…"
               />
             </div>
-            <Button type="submit" size="lg" className="w-full gap-2">
-              <Send className="h-4 w-4" /> Send Message
+            <Button type="submit" size="lg" className="w-full gap-2" disabled={sending}>
+              {sending ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4" /> Send Message
+                </>
+              )}
             </Button>
           </motion.form>
         </div>
