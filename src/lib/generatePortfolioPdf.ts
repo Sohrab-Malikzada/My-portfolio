@@ -249,22 +249,27 @@ export async function generatePortfolioPdf() {
     "02",
     "Skills",
     "Technical Skills",
-    "A comprehensive toolkit for building modern full-stack applications.",
+    "Core MERN stack expertise, supported by a broader set of technologies.",
   );
-  skillCategories.forEach((cat) => {
-    const items = skills.filter((s) => s.category === cat);
+  const skillBlock = (heading: string, value: string) => {
     ensure(14);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.setTextColor(...BRAND);
-    doc.text(cat, M, y + 4);
+    doc.text(heading, M, y + 4);
     y += 7;
-    text(items.map((s) => `${s.name} (${s.level}%)`).join("   ·   "), {
-      size: 9.5,
-      color: MUTED,
-      gap: 5,
-    });
-  });
+    text(value, { size: 9.5, color: MUTED, gap: 5 });
+  };
+  text("CORE SKILLS", { size: 8.5, style: "bold", color: MUTED, gap: 3 });
+  coreSkills.forEach((group) =>
+    skillBlock(group.group, group.items.map((t) => t.name).join("   ·   ")),
+  );
+  y += 2;
+  skillBlock(
+    "Additional Technologies",
+    additionalSkills.map((t) => t.name).join("   ·   "),
+  );
+  skillBlock("Currently Learning", learningSkills.map((t) => t.name).join("   ·   "));
 
   /* ---------- Projects ---------- */
   sectionHeader(
