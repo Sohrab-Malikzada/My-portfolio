@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Github,
   Linkedin,
+  Loader2,
   Mail,
   MapPin,
   Phone,
@@ -9,12 +11,14 @@ import {
   ExternalLink,
   Send,
 } from "lucide-react";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { SectionHeading } from "./SectionHeading";
 import { contact } from "@/data/portfolio";
+import { supabase } from "@/integrations/supabase/client";
 
 const iconMap = {
   mail: Mail,
@@ -25,17 +29,49 @@ const iconMap = {
   location: MapPin,
 } as const;
 
+const messageSchema = z.object({
+  name: z.string().trim().min(1, "Please enter your name").max(100),
+  email: z.string().trim().email("Please enter a valid email address").max(255),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Please write at least 10 characters")
+    .max(2000, "Message must be under 2000 characters"),
+});
+
 export const ContactSection = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const subject = encodeURIComponent(`Portfolio message from ${data.get("name")}`);
-    const body = encodeURIComponent(
-      `${data.get("message")}\n\nReply to: ${data.get("email")}`,
-    );
-    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
-    toast.success("Opening your email client…");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const parsed = messageSchema.safeParse({
+      name: data.get("name"),
+      email: data.get("email"),
+      message: data.get("message"),
+    });
+
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0].message);
+      return;
+    }
+
+    setSending(true);
+    const { error } = await supabase
+      .from("contact_messages")
+      .insert(parsed.data);
+    setSending(false);
+
+    if (error) {
+      toast.error("Could not send your message. Please try again or email me directly.");
+      return;
+    }
+
+    toast.success("Message sent — I'll get back to you within 24 hours.");
+    form.reset();
   };
+
 
   return (
     <section id="contact" className="relative py-24 md:py-32">
