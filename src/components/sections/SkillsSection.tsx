@@ -18,12 +18,15 @@ const CoreCard = ({ tech, delay }: { tech: Tech; delay: number }) => (
     whileHover={{ y: -6 }}
     className="glass-card group flex flex-col items-center gap-3 p-6"
   >
-    <TechIcon
-      slug={tech.icon}
-      name={tech.name}
-      className="h-9 w-9 text-muted-foreground transition-all duration-300 group-hover:scale-110 group-hover:text-primary"
-    />
-    <span className="text-center text-sm font-semibold">{tech.name}</span>
+    <span className="icon-pedestal">
+      <TechIcon
+        slug={tech.icon}
+        name={tech.name}
+        colored
+        className="icon-3d h-9 w-9"
+      />
+    </span>
+    <span className="text-center text-sm font-bold tracking-tight">{tech.name}</span>
   </motion.div>
 );
 
@@ -39,13 +42,15 @@ const SmallCard = ({ tech, delay }: { tech: Tech; delay: number }) => (
     <TechIcon
       slug={tech.icon}
       name={tech.name}
-      className="h-4.5 w-4.5 h-[18px] w-[18px] shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
+      colored
+      className="icon-3d h-[18px] w-[18px] shrink-0"
     />
-    <span className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
       {tech.name}
     </span>
   </motion.div>
 );
+
 
 export const SkillsSection = () => {
   return (
@@ -64,7 +69,7 @@ export const SkillsSection = () => {
         <div className="mb-16">
           <div className="mb-8 flex items-center gap-3">
             <span className="h-px flex-1 bg-gradient-to-r from-primary/60 to-transparent" />
-            <h3 className="text-lg font-bold">
+            <h3 className="text-xl font-black uppercase tracking-[0.12em]">
               Core <span className="text-gradient">Skills</span>
             </h3>
             <span className="h-px flex-1 bg-gradient-to-l from-primary/60 to-transparent" />
@@ -76,9 +81,10 @@ export const SkillsSection = () => {
                 key={group.group}
                 className="rounded-2xl border border-primary/20 bg-primary/[0.03] p-6"
               >
-                <p className="mb-5 font-mono text-xs uppercase tracking-widest text-primary">
+                <p className="mb-5 label-eyebrow">
                   // {group.group}
                 </p>
+
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                   {group.items.map((tech, i) => (
                     <CoreCard
@@ -95,7 +101,7 @@ export const SkillsSection = () => {
 
         {/* Additional */}
         <div className="mb-16">
-          <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-6 label-eyebrow">
             // Additional Technologies
           </h3>
           <div className="flex flex-wrap gap-3">
@@ -107,7 +113,7 @@ export const SkillsSection = () => {
 
         {/* Learning */}
         <div>
-          <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-6 label-eyebrow">
             // Currently Learning
           </h3>
           <div className="flex flex-wrap gap-3">
@@ -118,14 +124,16 @@ export const SkillsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: i * 0.06 }}
-                className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm text-accent-foreground"
+                className="group inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-semibold text-foreground"
               >
                 <Sparkles className="h-3.5 w-3.5 text-accent" />
                 <TechIcon
                   slug={tech.icon}
                   name={tech.name}
-                  className="h-[16px] w-[16px]"
+                  colored
+                  className="icon-3d h-[16px] w-[16px]"
                 />
+
                 {tech.name}
               </motion.span>
             ))}

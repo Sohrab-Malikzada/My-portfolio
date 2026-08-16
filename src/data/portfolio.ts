@@ -19,10 +19,8 @@ export const profile = {
   lastName: "Malikzada",
   title: "MERN Stack Developer",
   roles: [
+    "Aspiring Full-Stack Developer",
     "MERN Stack Developer",
-    "React.js Developer",
-    "Node.js & Express Developer",
-    "Software Engineering Student",
   ],
   availability: "Available for opportunities",
   intro:

@@ -27,7 +27,7 @@ export const CertificatesSection = () => {
 
           return (
             <div key={group} className="mb-14 last:mb-0">
-              <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              <h3 className="mb-6 label-eyebrow">
                 // {group}
               </h3>
 
