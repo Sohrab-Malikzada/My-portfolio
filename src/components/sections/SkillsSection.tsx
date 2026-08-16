@@ -18,12 +18,15 @@ const CoreCard = ({ tech, delay }: { tech: Tech; delay: number }) => (
     whileHover={{ y: -6 }}
     className="glass-card group flex flex-col items-center gap-3 p-6"
   >
-    <TechIcon
-      slug={tech.icon}
-      name={tech.name}
-      className="h-9 w-9 text-muted-foreground transition-all duration-300 group-hover:scale-110 group-hover:text-primary"
-    />
-    <span className="text-center text-sm font-semibold">{tech.name}</span>
+    <span className="icon-pedestal">
+      <TechIcon
+        slug={tech.icon}
+        name={tech.name}
+        colored
+        className="icon-3d h-9 w-9"
+      />
+    </span>
+    <span className="text-center text-sm font-bold tracking-tight">{tech.name}</span>
   </motion.div>
 );
 
@@ -39,13 +42,15 @@ const SmallCard = ({ tech, delay }: { tech: Tech; delay: number }) => (
     <TechIcon
       slug={tech.icon}
       name={tech.name}
-      className="h-4.5 w-4.5 h-[18px] w-[18px] shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
+      colored
+      className="icon-3d h-[18px] w-[18px] shrink-0"
     />
-    <span className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+    <span className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground">
       {tech.name}
     </span>
   </motion.div>
 );
+
 
 export const SkillsSection = () => {
   return (
