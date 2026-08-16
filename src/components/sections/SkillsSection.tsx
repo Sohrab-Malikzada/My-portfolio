@@ -69,7 +69,7 @@ export const SkillsSection = () => {
         <div className="mb-16">
           <div className="mb-8 flex items-center gap-3">
             <span className="h-px flex-1 bg-gradient-to-r from-primary/60 to-transparent" />
-            <h3 className="text-lg font-bold">
+            <h3 className="text-xl font-black uppercase tracking-[0.12em]">
               Core <span className="text-gradient">Skills</span>
             </h3>
             <span className="h-px flex-1 bg-gradient-to-l from-primary/60 to-transparent" />
@@ -81,9 +81,10 @@ export const SkillsSection = () => {
                 key={group.group}
                 className="rounded-2xl border border-primary/20 bg-primary/[0.03] p-6"
               >
-                <p className="mb-5 font-mono text-xs uppercase tracking-widest text-primary">
+                <p className="mb-5 label-eyebrow">
                   // {group.group}
                 </p>
+
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                   {group.items.map((tech, i) => (
                     <CoreCard
