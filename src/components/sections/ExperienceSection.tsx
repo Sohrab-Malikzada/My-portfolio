@@ -83,11 +83,11 @@ export const ExperienceSection = () => {
                         alt: `${job.role} certificate from ${job.company}`,
                       })
                     }
-                    className="mb-5 inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs text-primary transition-colors hover:bg-primary/20"
+                    className="mb-5 inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary/20"
                   >
                     <Award className="h-3.5 w-3.5" /> View certificate
                     {job.certificateId && (
-                      <span className="font-mono text-[10px] text-muted-foreground">
+                      <span className="rounded border border-border bg-background/60 px-1.5 py-0.5 font-mono text-[10px] font-semibold tracking-normal text-muted-foreground">
                         {job.certificateId}
                       </span>
                     )}

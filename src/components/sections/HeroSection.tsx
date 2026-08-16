@@ -145,7 +145,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-12 flex items-center gap-4"
             >
-              <span className="font-mono text-xs text-muted-foreground">
+              <span className="label-eyebrow">
                 // connect
               </span>
               {socialLinks.map((s) => (
@@ -192,10 +192,10 @@ export const HeroSection = () => {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="glass-card absolute -left-6 top-1/4 px-4 py-3 text-center"
             >
-              <p className="text-2xl font-bold text-primary">
+              <p className="text-3xl font-black tracking-tighter text-gradient">
                 {profile.stats[0].value}
               </p>
-              <p className="font-mono text-[10px] text-muted-foreground">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
                 {profile.stats[0].label}
               </p>
             </motion.div>
@@ -204,10 +204,10 @@ export const HeroSection = () => {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="glass-card absolute -right-5 bottom-1/4 px-4 py-3 text-center"
             >
-              <p className="text-2xl font-bold text-accent">
+              <p className="text-3xl font-black tracking-tighter text-gradient">
                 {profile.stats[1].value}
               </p>
-              <p className="font-mono text-[10px] text-muted-foreground">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
                 {profile.stats[1].label}
               </p>
             </motion.div>
