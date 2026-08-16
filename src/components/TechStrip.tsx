@@ -13,7 +13,7 @@ const stack: Tech[] = [
 export const TechStrip = () => (
   <section aria-label="Core technology stack" className="relative border-y border-border/60 bg-card/30 py-10">
     <div className="container mx-auto px-6">
-      <p className="mb-7 text-center font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+      <p className="mb-7 text-center label-eyebrow">
         // Core stack I build with
       </p>
       <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-16">
@@ -27,14 +27,18 @@ export const TechStrip = () => (
             whileHover={{ y: -4 }}
             className="group flex flex-col items-center gap-2.5"
           >
-            <TechIcon
-              slug={tech.icon}
-              name={tech.name}
-              className="h-9 w-9 text-muted-foreground transition-all duration-300 group-hover:scale-110 group-hover:text-primary sm:h-11 sm:w-11"
-            />
-            <span className="text-xs font-semibold text-muted-foreground transition-colors group-hover:text-foreground sm:text-sm">
+            <span className="icon-pedestal">
+              <TechIcon
+                slug={tech.icon}
+                name={tech.name}
+                colored
+                className="icon-3d h-9 w-9 sm:h-11 sm:w-11"
+              />
+            </span>
+            <span className="text-xs font-bold tracking-tight text-muted-foreground transition-colors group-hover:text-foreground sm:text-sm">
               {tech.name}
             </span>
+
           </motion.li>
         ))}
       </ul>
