@@ -84,7 +84,7 @@ export const HeroSection = () => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
               </span>
-              <span className="font-mono text-xs text-success">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-success">
                 {profile.availability}
               </span>
             </motion.div>
