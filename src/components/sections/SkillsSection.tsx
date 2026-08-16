@@ -101,7 +101,7 @@ export const SkillsSection = () => {
 
         {/* Additional */}
         <div className="mb-16">
-          <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-6 label-eyebrow">
             // Additional Technologies
           </h3>
           <div className="flex flex-wrap gap-3">
@@ -113,7 +113,7 @@ export const SkillsSection = () => {
 
         {/* Learning */}
         <div>
-          <h3 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-6 label-eyebrow">
             // Currently Learning
           </h3>
           <div className="flex flex-wrap gap-3">
@@ -124,14 +124,16 @@ export const SkillsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: i * 0.06 }}
-                className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm text-accent-foreground"
+                className="group inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-semibold text-foreground"
               >
                 <Sparkles className="h-3.5 w-3.5 text-accent" />
                 <TechIcon
                   slug={tech.icon}
                   name={tech.name}
-                  className="h-[16px] w-[16px]"
+                  colored
+                  className="icon-3d h-[16px] w-[16px]"
                 />
+
                 {tech.name}
               </motion.span>
             ))}
