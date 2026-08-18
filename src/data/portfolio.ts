@@ -146,8 +146,8 @@ export const projects = [
       "Painting",
       "Art Gallery",
     ],
-    github: "https://github.com/Sohrab-Malikzada/ArtGalleryStudio",
-    demo: "https://ArtGalleryStudio.infinity.app/",
+    github: "https://github.com/Sohrab-Malikzada/Art-Gallery",
+    demo: "http://sohrabartgallery.lovestoblog.com/",
     featured: true,
   },
 ];
