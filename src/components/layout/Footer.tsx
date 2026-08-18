@@ -55,7 +55,7 @@ export const Footer = () => (
       </div>
 
       <p className="mt-10 flex items-center justify-center gap-1.5 border-t border-border pt-6 font-mono text-xs text-muted-foreground">
-        Built with <Heart className="h-3 w-3 text-destructive" /> by{" "}
+        Built by{" "}
         {profile.name} — {profile.title} · {new Date().getFullYear()}
       </p>
     </div>

@@ -185,32 +185,6 @@ export const HeroSection = () => {
               <span className="pointer-events-none absolute bottom-4 left-4 h-8 w-8 rounded-bl-lg border-b-2 border-l-2 border-primary" />
               <span className="pointer-events-none absolute bottom-4 right-4 h-8 w-8 rounded-br-lg border-b-2 border-r-2 border-primary" />
             </div>
-
-            {/* Floating stats */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-card absolute -left-6 top-1/4 px-4 py-3 text-center"
-            >
-              <p className="text-3xl font-black tracking-tighter text-gradient">
-                {profile.stats[0].value}
-              </p>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {profile.stats[0].label}
-              </p>
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-card absolute -right-5 bottom-1/4 px-4 py-3 text-center"
-            >
-              <p className="text-3xl font-black tracking-tighter text-gradient">
-                {profile.stats[1].value}
-              </p>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                {profile.stats[1].label}
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </div>

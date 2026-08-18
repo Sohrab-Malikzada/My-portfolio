@@ -1,30 +1,26 @@
-const awsMlCert = "/__l5e/assets-v1/25a4b1e4-d80d-4a06-aa03-06e32a0c6615/aws-ml.jpg";
-const deeplearningCert =
-  "/__l5e/assets-v1/e9d6dcf0-57bb-4256-b95c-247d83b30283/deeplearning-ai.jpg";
-const internshipCert =
-  "/__l5e/assets-v1/d0a7e1f0-77f3-485d-a29b-f899023f9466/internship-ttt.jpg";
-const mernCert = "/__l5e/assets-v1/bb50eda4-2d85-49d2-9458-dd8b8091dddb/mern-ttt.jpg";
-const simplilearnAiCert =
-  "/__l5e/assets-v1/b20876e9-ecc2-47ea-b153-25bb61973fab/simplilearn-ai.jpg";
-const unSdgCert = "/__l5e/assets-v1/63990d30-83ae-4a7a-9b95-b170a1b004c4/un-sdg.jpg";
-const wfpRupaniCert =
-  "/__l5e/assets-v1/75d94d97-1a45-4ab2-b55b-02938673c238/wfp-rupani.jpg";
-const storeDashboardShot =
-  "/__l5e/assets-v1/8a9cd319-e3c0-47c3-896c-daa25d5161cd/store-dashboard.png";
+import storeDashboardShot from "@/assets/Store_Managment_System_Dashboard.png";
+import awsMlCert from "@/assets/SimpleLearn_AWS_ML.jpg";
+import deeplearningCert from "@/assets/DeepLearning.AI.jpg";
+import internshipCert from "@/assets/TTT_Internship.jpg";
+import mernCert from "@/assets/TTT_MERN-Stack.jpg";
+import simplilearnAiCert from "@/assets/Simple_Learn_AI.jpg";
+import unSdgCert from "@/assets/UNITAR.jpg";
+import wfpRupaniCert from "@/assets/WFP.jpg";
+import artGallery from "@/assets/ArtGallery_php.jpg";
 
 
 export const profile = {
   name: "Sohrab Malikzada",
   firstName: "Sohrab",
   lastName: "Malikzada",
-  title: "MERN Stack Developer",
+  title: "Full-Stack Developer",
   roles: [
-    "Aspiring Full-Stack Developer",
+    "Full-Stack Developer",
     "MERN Stack Developer",
   ],
   availability: "Available for opportunities",
   intro:
-    "Software Engineering student specialised in the MERN stack — React.js, Node.js, Express.js and MongoDB. I build responsive interfaces, clean REST APIs and database-driven dashboards, with hands-on industry experience from a three-month software engineering internship.",
+    "Software Engineering student specialised in the MERN stack Development — React.js, Node.js, Express.js and MongoDB. I build responsive interfaces, clean REST APIs and database-driven dashboards, with hands-on industry experience from a three-month software engineering internship.",
   stats: [
     { value: "3", label: "Months Internship" },
     { value: "7", label: "Certifications" },
@@ -136,6 +132,22 @@ export const projects = [
     ],
     github: "https://github.com/Sohrab-Malikzada/Store-Managment_Dashborad",
     demo: "https://template-indol-iota.vercel.app/",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Art Gallery",
+    summary: "Full Art Gallery operations managment with APIs",
+    description:
+      "A complete Art Gallery Managment covering Add Painting, Remove Painting, Edit Painting, View Painting and Order Painting",
+    image: artGallery,
+    tech: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3"],
+    features: [
+      "Painting",
+      "Art Gallery",
+    ],
+    github: "https://github.com/Sohrab-Malikzada/ArtGalleryStudio",
+    demo: "https://ArtGalleryStudio.infinity.app/",
     featured: true,
   },
 ];
